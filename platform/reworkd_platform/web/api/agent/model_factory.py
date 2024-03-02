@@ -1,6 +1,6 @@
 from typing import Any, Dict, Optional, Tuple, Type, Union
 
-from langchain.chat_models import AzureChatOpenAI, ChatOpenAI
+from langchain_community.chat_models import AzureChatOpenAI, ChatOpenAI
 from pydantic import Field
 
 from reworkd_platform.schemas.agent import LLM_Model, ModelSettings

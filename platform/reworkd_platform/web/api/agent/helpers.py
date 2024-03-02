@@ -1,6 +1,7 @@
 from typing import Any, Callable, Dict, TypeVar
 
-from langchain import BasePromptTemplate, LLMChain
+from langchain.schema.prompt_template import BasePromptTemplate
+from langchain.chains import LLMChain
 from langchain.chat_models.base import BaseChatModel
 from langchain.schema import BaseOutputParser, OutputParserException
 from openai.error import (

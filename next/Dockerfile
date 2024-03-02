@@ -14,8 +14,8 @@ WORKDIR /next
 # Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci
+# Install dependencies with increased network timeout
+RUN npm ci --network-timeout 1000000
 
 # Copy the wait-for-db.sh script
 COPY wait-for-db.sh /usr/local/bin/wait-for-db.sh
