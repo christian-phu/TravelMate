@@ -27,12 +27,12 @@ services:
     env_file:
       - next/.env
     environment:
-      REWORKD_PLATFORM_HOST: 0.0.0.0
-      REWORKD_PLATFORM_DB_HOST: agentgpt_db
-      REWORKD_PLATFORM_DB_PORT: "3307"
-      REWORKD_PLATFORM_DB_USER: "reworkd_platform"
-      REWORKD_PLATFORM_DB_PASS: "reworkd_platform"
-      REWORKD_PLATFORM_DB_BASE: "reworkd_platform"
+      AGENT_PLATFORM_HOST: 0.0.0.0
+      AGENT_PLATFORM_DB_HOST: agentgpt_db
+      AGENT_PLATFORM_DB_PORT: "3307"
+      AGENT_PLATFORM_DB_USER: "agent_platform"
+      AGENT_PLATFORM_DB_PASS: "agent_platform"
+      AGENT_PLATFORM_DB_BASE: "agent_platform"
     depends_on:
       - agentgpt_db
 
@@ -45,10 +45,10 @@ services:
     ports:
       - "3308:3307"
     environment:
-      MYSQL_DATABASE: "reworkd_platform"
-      MYSQL_USER: "reworkd_platform"
-      MYSQL_PASSWORD: "reworkd_platform"
-      MYSQL_ROOT_PASSWORD: "reworkd_platform"
+      MYSQL_DATABASE: "agent_platform"
+      MYSQL_USER: "agent_platform"
+      MYSQL_PASSWORD: "agent_platform"
+      MYSQL_ROOT_PASSWORD: "agent_platform"
       MYSQL_TCP_PORT: 3307
     volumes:
       - agentgpt_db:/var/lib/mysql
