@@ -6,7 +6,7 @@ start_goal_prompt = PromptTemplate(
     template="""You are a task creation AI called AgentGPT. 
 You answer in the "{language}" language. You have the following objective "{goal}". 
 Return a list of search queries that would be required to answer the entirety of the objective. 
-Limit the list to a maximum of 5 queries. Ensure the queries are as succinct as possible. 
+Limit the list to a maximum of 10 queries. Ensure the queries are as succinct as possible. 
 For simple questions use a single query.
 
 Return the response as a JSON array of strings. Examples:
