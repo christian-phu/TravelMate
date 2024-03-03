@@ -70,7 +70,7 @@ class Search(Tool):
             input_str,
         )
 
-        k = 5  # Number of results to return
+        k = 10  # Number of results to return
         snippets: List[CitedSnippet] = []
 
         if results.get("answerBox"):

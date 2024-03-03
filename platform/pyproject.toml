@@ -3,12 +3,11 @@ name = "agent_platform"
 version = "0.1.0"
 description = ""
 authors = [
-    "awtkns",
-    "asim-shrestha"
+    "christian-phu",
 ]
 
 maintainers = [
-    "reworkd"
+    "christian-phu"
 ]
 
 readme = "README.md"
