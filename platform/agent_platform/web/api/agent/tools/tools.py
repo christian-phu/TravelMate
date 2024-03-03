@@ -2,8 +2,6 @@ from typing import List, Type
 
 from agent_platform.db.crud.oauth import OAuthCrud
 from agent_platform.schemas.user import UserBase
-from agent_platform.web.api.agent.tools.code import Code
-from agent_platform.web.api.agent.tools.image import Image
 from agent_platform.web.api.agent.tools.search import Search
 from agent_platform.web.api.agent.tools.sidsearch import SID
 from agent_platform.web.api.agent.tools.tool import Tool
@@ -26,9 +24,6 @@ def get_available_tools_names() -> List[str]:
 
 def get_external_tools() -> List[Type[Tool]]:
     return [
-        # Wikipedia,  # TODO: Remove if async doesn't work
-        Image,
-        Code,
         SID,
     ]
 

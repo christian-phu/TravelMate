@@ -1,0 +1,9 @@
+{
+  "BETA": "Beta",
+  "HEADING_DESCRIPTION": "Lắp ráp, cấu hình và triển khai các Đại lý AI tự động trong trình duyệt của bạn.",
+  "AGENT_NAME": "Tên",
+  "LABEL_AGENT_GOAL": "Mục tiêu",
+  "PLACEHOLDER_AGENT_GOAL": "Tin tức AI mới nhất là gì?",
+  "BUTTON_DEPLOY_AGENT": "Triển khai Đại lý",
+  "BUTTON_STOP_AGENT": "Dừng Đại lý"
+}

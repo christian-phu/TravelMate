@@ -1,0 +1,13 @@
+{
+  "ERROR_ACCESSING_OPENAI_API_KEY": "LỖI khi truy cập backend. Vui lòng gửi email cho support@reworkd.ai hoặc thử lại sau",
+  "ERROR_ADDING_ADDITIONAL_TASKS": "LỖI khi thêm nhiệm vụ mới. Có thể chúng vi phạm chính sách của mô hình của chúng tôi khi thực thi. Tiếp tục.",
+  "RATE_LIMIT_EXCEEDED": "Vượt quá giới hạn! Vui lòng chậm lại...😅",
+  "AGENT_MAXED_OUT_LOOPS": "Trình điều khiển này đã đạt giới hạn số lần lặp. Để bảo vệ ví tiền của bạn, trình điều khiển này sẽ được tắt. Bạn có thể cấu hình số lần lặp trong cài đặt nâng cao.",
+  "DEMO_LOOPS_REACHED": "Trình điều khiển đã hết số lần lặp. Cập nhật số lần lặp trong menu cài đặt nếu cần thêm lặp. Đang tắt.",
+  "AGENT_MANUALLY_SHUT_DOWN": "Trình điều khiển đã được tắt thủ công.",
+  "ALL_TASKS_COMPLETETD": "Tất cả nhiệm vụ đã hoàn thành. Đang tắt.",
+  "ERROR_API_KEY_QUOTA": "LỖI khi sử dụng khóa API OpenAI của bạn. Bạn đã vượt quá hạn mức hiện tại, vui lòng kiểm tra kế hoạch và chi tiết thanh toán của bạn.",
+  "ERROR_OPENAI_API_KEY_NO_GPT4": "LỖI khóa API của bạn không có quyền truy cập GPT-4. Bạn phải tham gia danh sách chờ của OpenAI trước. (Điều này khác với ChatGPT Plus)",
+  "ERROR_RETRIEVE_INITIAL_TASKS": "LỖI khi lấy mảng nhiệm vụ ban đầu. Thử lại, đặt mục tiêu rõ ràng hơn, hoặc sửa đổi mục tiêu sao cho phù hợp với chính sách mô hình của chúng tôi để chạy. Đang tắt.",
+  "INVALID_OPENAI_API_KEY": "LỖI khóa API OpenAI không hợp lệ"
+}

@@ -26,7 +26,7 @@ def get_app() -> FastAPI:
     configure_logging()
 
     app = FastAPI(
-        title="Reworkd Platform API",
+        title="Trip-Agent Platform API",
         version=metadata.version("agent_platform"),
         docs_url="/api/docs",
         redoc_url="/api/redoc",

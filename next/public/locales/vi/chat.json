@@ -1,0 +1,17 @@
+{
+  "COMPLETING": "Đang hoàn thành:",
+  "CONSIDER_SPONSORING_ON_GITHUB": "Vui lòng xem xét tài trợ cho dự án trên GitHub.",
+  "CONSOLE_TEXT_COPIED_TO_CLIPBOARD": "Văn bản đã được sao chép vào bảng tạm",
+  "CONSOLE_UNABLE_TO_COPY_TO_CLIPBOARD": "Không thể sao chép văn bản vào bảng tạm",
+  "CREATE_AN_AGENT_DESCRIPTION": "👉 Tạo một đại lý bằng cách thêm tên / mục tiêu và nhấn triển khai! Hãy thử các ví dụ dưới đây của chúng tôi!",
+  "EMBARKING_ON_NEW_GOAL": "Bắt đầu một mục tiêu mới:",
+  "EXPERIENCING_EXCEPTIONAL_TRAFFIC": "🚨 Chúng tôi đang gặp lượng truy cập đặc biệt, hãy mong đợi sự chậm trễ và thất bại nếu bạn không sử dụng khóa API của riêng mình🚨",
+  "HELP_SUPPORT_THE_ADVANCEMENT_OF_AGENTGPT": "💝️ Hãy hỗ trợ sự phát triển của AgentGPT. 💝️",
+  "NO_MORE_TASKS": "Không còn nhiệm vụ phụ cho:",
+  "RESTART_IF_IT_TAKES_X_SEC": "(Khởi động lại nếu quá trình này mất hơn 30 giây)",
+  "SUPPORT_NOW": "Hỗ trợ ngay bây giờ 🚀",
+  "TASK_ADDED": "Nhiệm vụ đã thêm:",
+  "THINKING": "Đang suy nghĩ...",
+  "YOU_CAN_PROVIDE_YOUR_API_KEY": "📢 Bạn có thể cung cấp khóa API OpenAI của riêng mình trong tab cài đặt để tăng giới hạn!",
+  "👉 Create an agent by adding a name / goal, and hitting deploy!": "👉 Tạo một đại lý bằng cách thêm tên/mục tiêu và nhấn triển khai!"
+}

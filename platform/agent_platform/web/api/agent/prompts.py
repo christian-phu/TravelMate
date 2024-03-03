@@ -4,15 +4,25 @@ from langchain.prompts import PromptTemplate
 # https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting
 start_goal_prompt = PromptTemplate(
     template="""You are a task creation AI called AgentGPT. 
+Your mission is to create a great travel plan.
 You answer in the "{language}" language. You have the following objective "{goal}". 
 Return a list of search queries that would be required to answer the entirety of the objective. 
 Limit the list to a maximum of 10 queries. Ensure the queries are as succinct as possible. 
 For simple questions use a single query.
 
+Queries must address the following criteria, if not, please add them yourself as needed:
+- Weather
+- Travel Packing Lists
+- Clothing Suggestions
+- Accommodation
+- Transport
+- Souvenir
+- Specific timeline for the trip
+
 Return the response as a JSON array of strings. Examples:
 
 query: "Who is considered the best NBA player in the current season?", answer: ["current NBA MVP candidates"]
-query: "How does the Olympicpayroll brand currently stand in the market, and what are its prospects and strategies for expansion in NJ, NY, and PA?", answer: ["Olympicpayroll brand comprehensive analysis 2023", "customer reviews of Olympicpayroll.com", "Olympicpayroll market position analysis", "payroll industry trends forecast 2023-2025", "payroll services expansion strategies in NJ, NY, PA"]
+query: "How does the Olympicpayrolle brand currently stand in the market, and what are its prospects and strategies for expansion in NJ, NY, and PA?", answer: ["Olympicpayroll brand comprehensive analysis 2023", "customer reviews of Olympicpayroll.com", "Olympicpayroll market position analysis", "payroll industry trends forecast 2023-2025", "payroll services expansion strategies in NJ, NY, PA"]
 query: "How can I create a function to add weight to edges in a digraph using {language}?", answer: ["algorithm to add weight to digraph edge in {language}"]
 query: "What is the current weather in New York?", answer: ["current weather in New York"]
 query: "5 + 5?", answer: ["Sum of 5 and 5"]
@@ -35,25 +45,6 @@ analyze_task_prompt = PromptTemplate(
     input_variables=["goal", "task", "language"],
 )
 
-code_prompt = PromptTemplate(
-    template="""
-    You are a world-class software engineer and an expert in all programing languages,
-    software systems, and architecture.
-
-    For reference, your high level goal is {goal}
-
-    Write code in English but explanations/comments in the "{language}" language.
-
-    Provide no information about who you are and focus on writing code.
-    Ensure code is bug and error free and explain complex concepts through comments
-    Respond in well-formatted markdown. Ensure code blocks are used for code sections.
-    Approach problems step by step and file by file, for each section, use a heading to describe the section.
-
-    Write code to accomplish the following:
-    {task}
-    """,
-    input_variables=["goal", "language", "task"],
-)
 
 execute_task_prompt = PromptTemplate(
     template="""Answer in the "{language}" language. Given
@@ -67,8 +58,8 @@ execute_task_prompt = PromptTemplate(
 )
 
 create_tasks_prompt = PromptTemplate(
-    template="""You are an AI task creation agent. You must answer in the "{language}"
-    language. You have the following objective `{goal}`.
+    template="""You are an AI task creation agent. Your mission is to create a great travel plan.
+    You must answer in the "{language}" language. You have the following objective `{goal}`.
 
     You have the following incomplete tasks:
     `{tasks}`
@@ -108,32 +99,6 @@ summarize_prompt = PromptTemplate(
     input_variables=["goal", "language", "text"],
 )
 
-company_context_prompt = PromptTemplate(
-    template="""You must answer in the "{language}" language.
-
-    Create a short description on "{company_name}".
-    Find out what sector it is in and what are their primary products.
-
-    Be as clear, informative, and descriptive as necessary.
-    You will not make up information or add any information outside of the above text.
-    Only use the given information and nothing more.
-
-    If there is no information provided, say "There is nothing to summarize".
-    """,
-    input_variables=["company_name", "language"],
-)
-
-summarize_pdf_prompt = PromptTemplate(
-    template="""You must answer in the "{language}" language.
-
-    For the given text: "{text}", you have the following objective "{query}".
-
-    Be as clear, informative, and descriptive as necessary.
-    You will not make up information or add any information outside of the above text.
-    Only use the given information and nothing more.
-    """,
-    input_variables=["query", "language", "text"],
-)
 
 summarize_with_sources_prompt = PromptTemplate(
     template="""You must answer in the "{language}" language.
