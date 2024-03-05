@@ -22,7 +22,7 @@ const navigation = [
   { name: "Home", href: "/", icon: <HomeIcon /> },
   { name: "Template", href: "/templates", icon: <DocsIcon /> },
   { name: "Setting", href: "/settings", icon: <PricingIcon /> },
-  { name: "My Trip", href: "/mytrip", icon: <BlogsIcon /> },
+  { name: "MyTrip", href: "/mytrip", icon: <BlogsIcon /> },
 ];
 
 export default function NavBar() {
@@ -38,7 +38,7 @@ export default function NavBar() {
       <Disclosure as="nav" className="z-50 w-full bg-transparent text-white">
         {({ open }) => (
           <>
-            <div className="align-center flex h-16 flex-row justify-between mx-8" >
+            <div className="align-center mx-8 flex h-16 flex-row justify-between">
               <div className="flex flex-shrink-0 cursor-pointer items-center lg:flex-1">
                 <a href="https://reworkd.ai">
                   <Image
@@ -49,7 +49,7 @@ export default function NavBar() {
                     className="mb-1 mr-2 invert-0"
                   />
                 </a>
-                <span className="text-xl font-light tracking-wider">Reworkd</span>
+                <span className="text-xl font-light tracking-wider">Viettrip</span>
               </div>
               <div className="hidden flex-1 items-center justify-center xmd:flex">
                 <div className="border-gradient flex h-[42px] items-center self-center overflow-hidden rounded-full bg-opacity-5 px-2 py-1 backdrop-blur-lg">
@@ -74,7 +74,7 @@ export default function NavBar() {
                   ))}
                 </div>
               </div>
-              <div className="hidden justify-end gap-2 xmd:flex sm:items-center lg:flex-1  ">
+              <div className="hidden w-2 justify-end gap-2 xmd:flex sm:items-center lg:flex-1 ">
                 {/* <GlowWrapper className="opacity-40">
                   <PrimaryButton
                     onClick={() => {
@@ -118,8 +118,6 @@ export default function NavBar() {
                 </div>
               </Disclosure.Panel>
             </div>
-
-            
           </>
         )}
       </Disclosure>
