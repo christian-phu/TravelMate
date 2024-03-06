@@ -103,21 +103,22 @@ export default function NavBar() {
                   )}
                 </Disclosure.Button>
               </div>
-              <Disclosure.Panel className="xmd:hidden">
+            </div>
+
+            <Disclosure.Panel className="xmd:hidden">
                 <div className="space-y-1 pb-3 pt-2">
                   {navigation.map((item) => (
                     <Disclosure.Button
                       key={item.name}
                       as="a"
                       href={item.href}
-                      className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base text-red-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                      className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
                     >
                       {item.name}
                     </Disclosure.Button>
                   ))}
                 </div>
               </Disclosure.Panel>
-            </div>
           </>
         )}
       </Disclosure>
