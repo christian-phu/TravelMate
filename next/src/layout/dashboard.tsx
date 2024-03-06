@@ -6,6 +6,7 @@ import AppHead from "../components/AppHead";
 import LeftSidebar from "../components/drawer/LeftSidebar";
 import { SidebarControlButton } from "../components/drawer/Sidebar";
 import { useConfigStore } from "../stores/configStore";
+import Navbar from "../components/NavBar";
 
 type SidebarSettings = {
   mobile: boolean;
@@ -44,9 +45,10 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
   return (
     <>
       <AppHead />
+      <Navbar />
       {/* Left sidebar */}
       {/* Mobile */}
-      <LeftSidebar
+      {/* <LeftSidebar
         show={leftSettings.mobile}
         setShow={setMobile(leftSettings, setLeftSettings)}
         onReload={props.onReload}
@@ -57,9 +59,9 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
           show={leftSettings.mobile}
           setShow={setMobile(leftSettings, setLeftSettings)}
         />
-      </div>
+      </div> */}
       {/* Desktop */}
-      <div className="hidden lg:visible lg:inset-y-0  lg:flex lg:w-64 lg:flex-col">
+      {/* <div className="hidden lg:visible lg:inset-y-0  lg:flex lg:w-64 lg:flex-col">
         <LeftSidebar
           show={leftSettings.desktop}
           setShow={setDesktop(leftSettings, setLeftSettings)}
@@ -72,10 +74,10 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
           show={leftSettings.desktop}
           setShow={setDesktop(leftSettings, setLeftSettings)}
         />
-      </div>
+      </div> */}
       {/* Right sidebar */}
       {/* Mobile */}
-      {props.rightSidebar && (
+      {/* {props.rightSidebar && (
         <>
           <div className="lg:inset-y-0 lg:flex lg:w-64 lg:flex-col">{props.rightSidebar}</div>
           <SidebarControlButton
@@ -84,12 +86,12 @@ const DashboardLayout = (props: DashboardLayoutProps) => {
             setShow={(show) => setLayout({ showRightSidebar: show })}
           />
         </>
-      )}
+      )} */}
       <main
         className={clsx(
           "bg-gradient-to-b from-slate-7 to-slate-3",
-          leftSettings.desktop && "lg:pl-64",
-          props.rightSidebar && layout.showRightSidebar && "lg:pr-64"
+          // leftSettings.desktop && "lg:pl-64",
+          // props.rightSidebar && layout.showRightSidebar && "lg:pr-64"
         )}
       >
         <div className="min-w-screen min-h-screen">{props.children}</div>

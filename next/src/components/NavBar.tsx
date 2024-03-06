@@ -15,20 +15,18 @@ import DocsIcon from "../../public/icons/icon-docs.svg";
 import GithubIcon from "../../public/icons/icon-github.svg";
 import HomeIcon from "../../public/icons/icon-home.svg";
 import PricingIcon from "../../public/icons/icon-pricing.svg";
+import AuthItem from "../components/sidebar/AuthItem";
+import { useAuth } from "../hooks/useAuth";
 
 const navigation = [
-  { name: "Home", href: "/home", icon: <HomeIcon /> },
-  { name: "Blog", href: "/blog", icon: <BlogsIcon /> },
-  { name: "Pricing", href: "https://agentgpt.reworkd.ai/plan", icon: <PricingIcon /> },
-  {
-    name: "Github",
-    href: "https://github.com/reworkd/AgentGPT",
-    icon: <GithubIcon />,
-  },
-  { name: "Docs", href: "https://docs.reworkd.ai/", icon: <DocsIcon /> },
+  { name: "Home", href: "/", icon: <HomeIcon /> },
+  { name: "Template", href: "/templates", icon: <DocsIcon /> },
+  { name: "Setting", href: "/settings", icon: <PricingIcon /> },
+  { name: "MyTrip", href: "/mytrip", icon: <BlogsIcon /> },
 ];
 
 export default function NavBar() {
+  const { session, signIn, signOut, status } = useAuth();
   const router = useRouter();
   const currentIndex = navigation.findIndex(
     (nav) => router.pathname.includes(nav.href) || router.pathname === nav.href
@@ -40,16 +38,18 @@ export default function NavBar() {
       <Disclosure as="nav" className="z-50 w-full bg-transparent text-white">
         {({ open }) => (
           <>
-            <div className="align-center flex h-16 flex-row justify-between">
+            <div className="align-center mx-8 flex h-16 flex-row justify-between">
               <div className="flex flex-shrink-0 cursor-pointer items-center lg:flex-1">
-                <Image
-                  src="/logos/dark-default-solid.svg"
-                  width="25"
-                  height="25"
-                  alt="Reworkd AI"
-                  className="mb-1 mr-2 invert-0"
-                />
-                <span className="text-xl font-light tracking-wider">Reworkd</span>
+                <a href="https://reworkd.ai">
+                  <Image
+                    src="/logos/dark-default-solid.svg"
+                    width="25"
+                    height="25"
+                    alt="Reworkd AI"
+                    className="mb-1 mr-2 invert-0"
+                  />
+                </a>
+                <span className="text-xl font-light tracking-wider">Viettrip</span>
               </div>
               <div className="hidden flex-1 items-center justify-center xmd:flex">
                 <div className="border-gradient flex h-[42px] items-center self-center overflow-hidden rounded-full bg-opacity-5 px-2 py-1 backdrop-blur-lg">
@@ -74,8 +74,8 @@ export default function NavBar() {
                   ))}
                 </div>
               </div>
-              <div className="hidden justify-end gap-2 xmd:flex sm:items-center lg:flex-1">
-                <GlowWrapper className="opacity-40">
+              <div className="hidden w-2 justify-end gap-2 xmd:flex sm:items-center lg:flex-1 ">
+                {/* <GlowWrapper className="opacity-40">
                   <PrimaryButton
                     onClick={() => {
                       window.open("https://6h6bquxo5g1.typeform.com/to/qscfsOf1", "_blank");
@@ -89,7 +89,8 @@ export default function NavBar() {
                       />
                     </>
                   </PrimaryButton>
-                </GlowWrapper>
+                </GlowWrapper> */}
+                <AuthItem session={session} signOut={signOut} signIn={signIn} />
               </div>
               <div className="-mr-2 flex items-center xmd:hidden">
                 {/* Mobile menu button */}
@@ -102,22 +103,21 @@ export default function NavBar() {
                   )}
                 </Disclosure.Button>
               </div>
+              <Disclosure.Panel className="xmd:hidden">
+                <div className="space-y-1 pb-3 pt-2">
+                  {navigation.map((item) => (
+                    <Disclosure.Button
+                      key={item.name}
+                      as="a"
+                      href={item.href}
+                      className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base text-red-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                    >
+                      {item.name}
+                    </Disclosure.Button>
+                  ))}
+                </div>
+              </Disclosure.Panel>
             </div>
-
-            <Disclosure.Panel className="xmd:hidden">
-              <div className="space-y-1 pb-3 pt-2">
-                {navigation.map((item) => (
-                  <Disclosure.Button
-                    key={item.name}
-                    as="a"
-                    href={item.href}
-                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base text-gray-600 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
-                  >
-                    {item.name}
-                  </Disclosure.Button>
-                ))}
-              </div>
-            </Disclosure.Panel>
           </>
         )}
       </Disclosure>

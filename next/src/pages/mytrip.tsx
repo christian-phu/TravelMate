@@ -1,19 +1,12 @@
-import Image from "next/image";
+import React, { useState } from "react";
+import DashboardLayout from "../layout/dashboard";
+import { useAuth } from "../hooks/useAuth";
+import { api } from "../utils/api";
+import { DrawerItemButton, DrawerItemButtonLoader } from "../components/drawer/DrawerItemButton";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
-import { IoCloseSharp } from "react-icons/io5";
 
-import { DrawerItemButton, DrawerItemButtonLoader } from "./DrawerItemButton";
-import type { DisplayProps } from "./Sidebar";
-import Sidebar from "./Sidebar";
-import { useAuth } from "../../hooks/useAuth";
-import { api } from "../../utils/api";
-import AuthItem from "../sidebar/AuthItem";
-import LinkIconItem from "../sidebar/LinkIconItem";
-import LinkItem from "../sidebar/LinkItem";
-import { PAGE_LINKS } from "../sidebar/links";
-
-const LeftSidebar = ({ show, setShow, onReload }: DisplayProps & { onReload?: () => void }) => {
+export default function MyTrip() {
   const router = useRouter();
   const { session, signIn, signOut, status } = useAuth();
   const [t] = useTranslation("drawer");
@@ -23,32 +16,9 @@ const LeftSidebar = ({ show, setShow, onReload }: DisplayProps & { onReload?: ()
   });
   const userAgents = data ?? [];
 
-  const navigateToPage = (href: string) => {
-    if (router.pathname === href) {
-      onReload?.();
-      return;
-    }
-
-    void router.push(href);
-  };
-
   return (
-    <Sidebar show={show} setShow={setShow} side="left" className="border-slate-6s border-r">
-      <div className="flex flex-row items-center pb-6">
-        <button
-          className="ml-auto rounded-md border-none transition-all hover:bg-slate-5"
-          onClick={() => setShow(!show)}
-        >
-          <IoCloseSharp size="24" className="z-20 m-2 text-slate-11" />
-        </button>
-      </div>
-      <button
-        className="mb-4 rounded-md bg-slate-1 p-1 shadow-depth-1 hover:bg-slate-2"
-        onClick={() => navigateToPage("/")}
-      >
-        New Trip
-      </button>
-      <div className="mb-2 mr-2 flex-1 overflow-y-auto overflow-x-hidden overflow-ellipsis">
+    <DashboardLayout>
+      <div className="mx-8 mb-2 mr-2 flex-1 overflow-y-auto overflow-x-hidden overflow-ellipsis">
         {status === "unauthenticated" && (
           <div className="p-1 text-sm text-slate-12">
             <a className="link" onClick={() => void signIn()}>
@@ -81,8 +51,6 @@ const LeftSidebar = ({ show, setShow, onReload }: DisplayProps & { onReload?: ()
           />
         ))}
       </div>
-    </Sidebar>
+    </DashboardLayout>
   );
-};
-
-export default LeftSidebar;
+}
