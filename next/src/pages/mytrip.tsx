@@ -26,7 +26,7 @@ export default function MyTrip() {
             Your Trips
           </h3>
           <Link
-            href="/categories/all"
+            href="/"
             className="text-accent dark:text-accentDark inline-block text-base font-medium underline      underline-offset-2 md:text-lg"
           >
             + New Trip
