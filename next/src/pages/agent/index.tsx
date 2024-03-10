@@ -37,12 +37,31 @@ const AgentPage: NextPage = () => {
   });
 
   const messages = getAgent.data ? (getAgent.data.tasks as Message[]) : [];
-  console.log("messages", messages);
+  // console.log("messages", messages);
   
 
   const shareLink = () => {
     return encodeURI(`${env.NEXT_PUBLIC_VERCEL_URL}${router.asPath}`);
   };
+
+  const addressData = [
+    {
+      id: 0,
+      address:
+        "Thảo Cầm Viên (Saigon Zoo And Botanical Garden), 2B Nguyễn Bỉnh Khiêm, Phường Bến Nghé, Quận 1, Ho Chi Minh City, Vietnam",
+    },
+    {
+      id: 1,
+      address: "Dam Sen Water Park, Số 03 Hòa Bình, Phường 3, Quận 11, Ho Chi Minh City, Vietnam",
+    },
+    { id: 2, address: "Bến Nhà Rồng, Ho Chi Minh City, Vietnam" },
+    { id: 3, address: "Chợ Bến Thành (Ben Thanh Market)" },
+    {
+      id: 4,
+      address:
+        "Nhà Thờ Đức Bà",
+    },
+  ];
 
   return (
     <DashboardLayout>
@@ -93,7 +112,7 @@ const AgentPage: NextPage = () => {
           />
         </div>
         <div className="p-4" style={{ width: 580, height: 630 }}>
-          <Map />
+          <Map addressData={addressData} />
         </div>
       </div>
     </DashboardLayout>
