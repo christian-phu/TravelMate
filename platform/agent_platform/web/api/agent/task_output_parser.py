@@ -5,11 +5,9 @@ from typing import List
 from langchain.schema import BaseOutputParser, OutputParserException
 
 
-class TaskOutputParser(BaseOutputParser[List[str]]):
-    """
-    Extension of LangChain's BaseOutputParser
-    Responsible for parsing task creation output into a list of task strings
-    """
+class TaskOutputParser(
+    BaseOutputParser[List[str]]
+    ):
 
     completed_tasks: List[str] = []
 
