@@ -37,6 +37,8 @@ const AgentPage: NextPage = () => {
   });
 
   const messages = getAgent.data ? (getAgent.data.tasks as Message[]) : [];
+  console.log("messages", messages);
+  
 
   const shareLink = () => {
     return encodeURI(`${env.NEXT_PUBLIC_VERCEL_URL}${router.asPath}`);
@@ -45,10 +47,7 @@ const AgentPage: NextPage = () => {
   return (
     <DashboardLayout>
       <div className="flex flex-wrap">
-        <div 
-          className="p-4" 
-          style={{ maxHeight: "calc(100vh - 4rem)", overflowX: "scroll" }}
-        >
+        <div className="p-4" style={{ maxHeight: "calc(100vh - 4rem)", overflowX: "scroll" }}>
           <div className="flex w-full max-w-screen-md flex-grow flex-col items-center overflow-hidden">
             <ChatWindow messages={messages} title={getAgent?.data?.name} visibleOnMobile>
               {messages.map((message, index) => {
@@ -93,7 +92,7 @@ const AgentPage: NextPage = () => {
             className="bg-gray-950 text-sm"
           />
         </div>
-        <div className="p-4">
+        <div className="p-4" style={{ width: 580, height: 630 }}>
           <Map />
         </div>
       </div>
