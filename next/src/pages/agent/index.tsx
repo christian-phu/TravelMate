@@ -17,7 +17,7 @@ import DashboardLayout from "../../layout/dashboard";
 import type { Message } from "../../types/message";
 import { api } from "../../utils/api";
 import { languages } from "../../utils/languages";
-import Map from "../../components/map";
+import Map from "../../components/Map";
 
 const AgentPage: NextPage = () => {
   const [t] = useTranslation();
@@ -45,7 +45,10 @@ const AgentPage: NextPage = () => {
   return (
     <DashboardLayout>
       <div className="flex flex-wrap">
-        <div className="p-4" style={{ maxHeight: "calc(100vh - 4rem)", overflowX: "scroll" }}>
+        <div 
+          className="p-4" 
+          style={{ maxHeight: "calc(100vh - 4rem)", overflowX: "scroll" }}
+        >
           <div className="flex w-full max-w-screen-md flex-grow flex-col items-center overflow-hidden">
             <ChatWindow messages={messages} title={getAgent?.data?.name} visibleOnMobile>
               {messages.map((message, index) => {
