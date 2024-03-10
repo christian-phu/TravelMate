@@ -17,6 +17,7 @@ import DashboardLayout from "../../layout/dashboard";
 import type { Message } from "../../types/message";
 import { api } from "../../utils/api";
 import { languages } from "../../utils/languages";
+import Map from "../../components/map";
 
 const AgentPage: NextPage = () => {
   const [t] = useTranslation();
@@ -43,53 +44,55 @@ const AgentPage: NextPage = () => {
 
   return (
     <DashboardLayout>
-      <div
-        id="content"
-        className="flex h-screen max-w-full flex-col items-center justify-center gap-3 px-3 pt-7 md:px-10"
-      >
-        <div className="flex w-full max-w-screen-md flex-grow flex-col items-center overflow-hidden">
-          <ChatWindow messages={messages} title={getAgent?.data?.name} visibleOnMobile>
-            {messages.map((message, index) => {
-              return (
-                <FadeIn key={`${index}-${message.type}`}>
-                  <ChatMessage message={message} />
-                </FadeIn>
-              );
-            })}
-          </ChatWindow>
-        </div>
-        <div className="flex flex-row gap-2">
-          <Button icon={<FaBackspace />} onClick={() => void router.push("/")}>
-            Back
-          </Button>
-          <Button
-            icon={<FaTrash />}
-            loader
-            onClick={() => {
-              deleteAgent.mutate(agentId);
-            }}
-            enabledClassName={"bg-red-600 hover:bg-red-400"}
-          >
-            Delete
-          </Button>
+      <div className="flex flex-wrap">
+        <div className="p-4" style={{ maxHeight: "calc(100vh - 4rem)", overflowX: "scroll" }}>
+          <div className="flex w-full max-w-screen-md flex-grow flex-col items-center overflow-hidden">
+            <ChatWindow messages={messages} title={getAgent?.data?.name} visibleOnMobile>
+              {messages.map((message, index) => {
+                return (
+                  <FadeIn key={`${index}-${message.type}`}>
+                    <ChatMessage message={message} />
+                  </FadeIn>
+                );
+              })}
+            </ChatWindow>
+          </div>
+          <div className="flex flex-row gap-2">
+            <Button icon={<FaBackspace />} onClick={() => void router.push("/")}>
+              Back
+            </Button>
+            <Button
+              icon={<FaTrash />}
+              loader
+              onClick={() => {
+                deleteAgent.mutate(agentId);
+              }}
+              enabledClassName={"bg-red-600 hover:bg-red-400"}
+            >
+              Delete
+            </Button>
 
-          <Button
-            icon={<FaShare />}
-            onClick={() => {
-              void window.navigator.clipboard
-                .writeText(shareLink())
-                .then(() => setShowCopied(true));
-            }}
-            enabledClassName={"bg-green-600 hover:bg-green-400"}
-          >
-            Share
-          </Button>
+            <Button
+              icon={<FaShare />}
+              onClick={() => {
+                void window.navigator.clipboard
+                  .writeText(shareLink())
+                  .then(() => setShowCopied(true));
+              }}
+              enabledClassName={"bg-green-600 hover:bg-green-400"}
+            >
+              Share
+            </Button>
+          </div>
+          <Toast
+            model={[showCopied, setShowCopied]}
+            title={t("COPIED_TO_CLIPBOARD", { ns: "common" })}
+            className="bg-gray-950 text-sm"
+          />
         </div>
-        <Toast
-          model={[showCopied, setShowCopied]}
-          title={t("COPIED_TO_CLIPBOARD", { ns: "common" })}
-          className="bg-gray-950 text-sm"
-        />
+        <div className="p-4">
+          <Map />
+        </div>
       </div>
     </DashboardLayout>
   );
