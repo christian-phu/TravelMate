@@ -19,6 +19,7 @@ import AuthItem from "../components/sidebar/AuthItem";
 import { useAuth } from "../hooks/useAuth";
 
 const navigation = [
+  { name: "Welcome", href: "/welcome", icon: <HomeIcon /> },
   { name: "Home", href: "/", icon: <HomeIcon /> },
   { name: "Template", href: "/templates", icon: <DocsIcon /> },
   { name: "Setting", href: "/settings", icon: <PricingIcon /> },
@@ -106,19 +107,19 @@ export default function NavBar() {
             </div>
 
             <Disclosure.Panel className="xmd:hidden">
-                <div className="space-y-1 pb-3 pt-2">
-                  {navigation.map((item) => (
-                    <Disclosure.Button
-                      key={item.name}
-                      as="a"
-                      href={item.href}
-                      className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
-                    >
-                      {item.name}
-                    </Disclosure.Button>
-                  ))}
-                </div>
-              </Disclosure.Panel>
+              <div className="space-y-1 pb-3 pt-2">
+                {navigation.map((item) => (
+                  <Disclosure.Button
+                    key={item.name}
+                    as="a"
+                    href={item.href}
+                    className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base text-white hover:border-gray-300 hover:bg-gray-50 hover:text-gray-800"
+                  >
+                    {item.name}
+                  </Disclosure.Button>
+                ))}
+              </div>
+            </Disclosure.Panel>
           </>
         )}
       </Disclosure>
