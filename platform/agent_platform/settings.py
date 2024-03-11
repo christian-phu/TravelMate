@@ -98,7 +98,6 @@ class Settings(BaseSettings):
     pusher_cluster: Optional[str] = None
 
     # Application Settings
-    ff_mock_mode_enabled: bool = False  # Controls whether calls are mocked
     max_loops: int = 25  # Maximum number of loops to run
 
     # Settings for sid

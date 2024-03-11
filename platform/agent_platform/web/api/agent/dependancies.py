@@ -33,7 +33,7 @@ def agent_crud(
 async def agent_start_validator(
     body: AgentRunCreate = Body(
         example={
-            "goal": "Create business plan for a bagel company",
+            "goal": "Plan trip to Hanoi",
             "modelSettings": {
                 "customModelName": "gpt-3.5-turbo",
             },
@@ -60,11 +60,11 @@ async def agent_analyze_validator(
 async def agent_execute_validator(
     body: AgentTaskExecute = Body(
         example={
-            "goal": "Perform tasks accurately",
-            "task": "Write code to make a platformer",
+            "goal": "Plan trip to Hanoi",
+            "task": "Search for flights to Hanoi",
             "analysis": {
-                "reasoning": "I like to write code.",
-                "action": "code",
+                "reasoning": "I need to find the best flight",
+                "action": "search",
                 "arg": "",
             },
         },

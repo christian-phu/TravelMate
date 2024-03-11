@@ -3,7 +3,6 @@ from typing import List, Type
 from agent_platform.db.crud.oauth import OAuthCrud
 from agent_platform.schemas.user import UserBase
 from agent_platform.web.api.agent.tools.search import Search
-from agent_platform.web.api.agent.tools.sidsearch import SID
 from agent_platform.web.api.agent.tools.tool import Tool
 
 
@@ -24,7 +23,7 @@ def get_available_tools_names() -> List[str]:
 
 def get_external_tools() -> List[Type[Tool]]:
     return [
-        SID,
+        # Add external tools here
     ]
 
 
@@ -43,8 +42,6 @@ def format_tool_name(tool_name: str) -> str:
 
 
 def get_tools_overview(tools: List[Type[Tool]]) -> str:
-    """Return a formatted string of name: description pairs for all available tools"""
-
     # Create a list of formatted strings
     formatted_strings = [
         f"'{get_tool_name(tool)}': {tool.description}" for tool in tools
