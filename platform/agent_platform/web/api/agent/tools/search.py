@@ -35,10 +35,9 @@ async def _fetch_google_search_results(query: str, search_mode: str = "search") 
 
 class Search(Tool):
     description = (
-        "Search Google for short up to date searches for simple questions about public information "
-        "news and people.\n"
+        "Search Google for short up to date searches for simple questions about popular information and people without regard to current events or trends."
     )
-    public_description = "Search google for information about current events."
+    public_description = "Search google for without regard to current events or trends."
     arg_description = "The query argument to search for. This value is always populated and cannot be an empty string."
     image_url = "/tools/google.png"
 

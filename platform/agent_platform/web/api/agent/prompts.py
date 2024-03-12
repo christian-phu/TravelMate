@@ -2,26 +2,18 @@ from langchain.prompts import PromptTemplate
 
 
 start_goal_prompt = PromptTemplate(
-    template="""You are a task creation AI called AgentGPT.
+    template="""You are a task creation AI called Trip Agent.
 Your mission is to create a great travel plan.
 You answer in the "{language}" language. You have the following objective "{goal}".
 Return a list of search queries that would be required to answer the entirety of the objective.
 Limit the list to a maximum of 10 queries. Ensure the queries are as succinct as possible.
 For simple questions use a single query.
 
-Queries must address the following criteria, if not, please add them yourself as needed:
-- Weather
-- Travel Packing Lists
-- Clothing Suggestions
-- Accommodation
-- Transport
-- Souvenir
-- Specific timeline for the trip
 
 Return the response as a JSON array of strings. Examples:
 
 query: "Who is considered the best NBA player in the current season?", answer: ["current NBA MVP candidates"]
-query: "How does the Olympicpayrolle brand currently stand in the market, and what are its prospects and strategies for expansion in NJ, NY, and PA?", answer: ["Olympicpayroll brand comprehensive analysis 2023", "customer reviews of Olympicpayroll.com", "Olympicpayroll market position analysis", "payroll industry trends forecast 2023-2025", "payroll services expansion strategies in NJ, NY, PA"]
+query: "How does the Olympicpayroll brand currently stand in the market, and what are its prospects and strategies for expansion in NJ, NY, and PA?", answer: ["Olympicpayroll brand comprehensive analysis 2023", "customer reviews of Olympicpayroll.com", "Olympicpayroll market position analysis", "payroll industry trends forecast 2023-2025", "payroll services expansion strategies in NJ, NY, PA"]
 query: "How can I create a function to add weight to edges in a digraph using {language}?", answer: ["algorithm to add weight to digraph edge in {language}"]
 query: "What is the current weather in New York?", answer: ["current weather in New York"]
 query: "5 + 5?", answer: ["Sum of 5 and 5"]
@@ -131,3 +123,4 @@ chat_prompt = PromptTemplate(
     """,
     input_variables=["language"],
 )
+
