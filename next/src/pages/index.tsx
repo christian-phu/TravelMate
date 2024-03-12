@@ -142,7 +142,6 @@ const Home: NextPage = () => {
         handleRestart();
       }}
     >
-      <HelpDialog />
 
       <SignInDialog show={showSignInDialog} setOpen={setShowSignInDialog} />
       <div id="content" className="flex min-h-screen w-full items-center justify-center">
