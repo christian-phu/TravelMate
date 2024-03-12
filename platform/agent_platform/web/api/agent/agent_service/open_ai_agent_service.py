@@ -130,7 +130,6 @@ class OpenAIAgentService(AgentService):
         task: str,
         analysis: Analysis,
     ) -> StreamingResponse:
-        # TODO: More mature way of calculating max_tokens
         if self.model.max_tokens > 3000:
             self.model.max_tokens = max(self.model.max_tokens - 1000, 3000)
 
@@ -181,7 +180,7 @@ class OpenAIAgentService(AgentService):
         goal: str,
         results: List[str],
     ) -> FastAPIStreamingResponse:
-        self.model.model_name = "gpt-4-turbo-preview"
+        self.model.model_name = "gpt-3.5-turbo-16k"
         self.model.max_tokens = 8000  # Total tokens = prompt tokens + completion tokens
 
         snippet_max_tokens = 7000  # Leave room for the rest of the prompt

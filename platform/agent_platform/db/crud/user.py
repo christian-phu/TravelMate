@@ -27,5 +27,4 @@ class UserCrud(BaseCrud):
             )
         )
 
-        # TODO: Only returns the first organization
         return (await self.session.execute(query)).scalar()
