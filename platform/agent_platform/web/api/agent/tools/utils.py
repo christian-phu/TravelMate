@@ -56,8 +56,7 @@ def summarize_with_sources(
     from agent_platform.web.api.agent.prompts import summarize_with_sources_prompt
 
     chain = LLMChain(llm=model, prompt=summarize_with_sources_prompt)
-
-    return StreamingResponse.from_chain(
+    response = StreamingResponse.from_chain(
         chain,
         {
             "goal": goal,
@@ -67,3 +66,4 @@ def summarize_with_sources(
         },
         media_type="text/event-stream",
     )
+    return response

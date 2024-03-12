@@ -119,22 +119,6 @@ summarize_with_sources_prompt = PromptTemplate(
     input_variables=["language", "query", "snippets"],
 )
 
-summarize_sid_prompt = PromptTemplate(
-    template="""You must answer in the "{language}" language.
-
-    Parse and summarize the following text snippets "{snippets}".
-    Write using clear markdown formatting in a style expected of the goal "{goal}".
-    Be as clear, informative, and descriptive as necessary and attempt to
-    answer the query: "{query}" as best as possible.
-    If any of the snippets are not relevant to the query,
-    ignore them, and do not include them in the summary.
-    Do not mention that you are ignoring them.
-
-    If there is no information provided, say "There is nothing to summarize".
-    """,
-    input_variables=["goal", "language", "query", "snippets"],
-)
-
 chat_prompt = PromptTemplate(
     template="""You must answer in the "{language}" language.
 

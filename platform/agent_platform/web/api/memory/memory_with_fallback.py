@@ -8,11 +8,6 @@ from agent_platform.web.api.memory.memory import AgentMemory
 
 
 class MemoryWithFallback(AgentMemory):
-    """
-    Wrap a primary AgentMemory provider and use a fallback in the case that it fails
-    We do this because we've had issues with Weaviate crashing and causing memory to randomly fail
-    """
-
     def __init__(self, primary: AgentMemory, secondary: AgentMemory):
         self.primary = primary
         self.secondary = secondary
