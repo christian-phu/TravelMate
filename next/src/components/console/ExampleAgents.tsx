@@ -37,7 +37,7 @@ const ExampleAgents = ({ setAgentRun, setShowSignIn }: ExampleAgentsProps) => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formDataString = JSON.stringify(formData).replace(/"/g, '').replace(/_/g, '').replace(/{/g, '').replace(/}/g, '');
+    const formDataString = JSON.stringify(formData);
     console.log("Form data:", formDataString);
     if (setAgentRun) {
       setAgentRun(formData.location, formDataString);
