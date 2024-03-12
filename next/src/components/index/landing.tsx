@@ -9,7 +9,7 @@ import type { Message } from "../../types/message";
 import AppTitle from "../AppTitle";
 import Button from "../Button";
 import ExampleAgents from "../console/ExampleAgents";
-// import { ToolsDialog } from "../dialog/ToolsDialog";
+import { ToolsDialog } from "../dialog/ToolsDialog";
 import Input from "../Input";
 
 type LandingProps = {
@@ -24,7 +24,7 @@ type LandingProps = {
   setAgentRun: (newName: string, newGoal: string) => void;
 };
 const Landing = (props: LandingProps) => {
-  // const [showToolsDialog, setShowToolsDialog] = useState(false);
+  const [showToolsDialog, setShowToolsDialog] = useState(false);
 
   const { t } = useTranslation("indexPage");
   const agent = useAgentStore.use.agent();
@@ -72,13 +72,13 @@ const Landing = (props: LandingProps) => {
         />
 
         <div className="flex w-full flex-row items-center justify-center gap-3">
-              {/* <Button
-                ping
-                // onClick={() => setShowToolsDialog(true)}
-                className="h-full bg-gradient-to-t from-slate-9 to-slate-12 hover:shadow-depth-3"
-              >
-                <FaBackspace />
-              </Button> */}
+          <Button
+            ping
+            onClick={() => setShowToolsDialog(true)}
+            className="h-full bg-gradient-to-t from-slate-9 to-slate-12 hover:shadow-depth-3"
+          >
+            <FaCog />
+          </Button>
           <Button
             onClick={
               props.handlePlay
