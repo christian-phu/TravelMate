@@ -42,7 +42,7 @@ export default function NavBar() {
           <>
             <div className="align-center mx-8 flex h-16 flex-row justify-between">
               <div className="flex flex-shrink-0 cursor-pointer items-center lg:flex-1">
-                <Link href="/">
+                {/* <Link href="/">
                   <Image
                     src="/logos/dark-default-solid.svg"
                     width="25"
@@ -50,7 +50,7 @@ export default function NavBar() {
                     alt="Reworkd AI"
                     className="mb-1 mr-2 invert-0"
                   />
-                </Link>
+                </Link> */}
                 <span className="text-xl font-light tracking-wider">Viettrip</span>
               </div>
               <div className="hidden flex-1 items-center justify-center xmd:flex">

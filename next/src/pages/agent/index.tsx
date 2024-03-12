@@ -37,8 +37,7 @@ const AgentPage: NextPage = () => {
   });
 
   const messages = getAgent.data ? (getAgent.data.tasks as Message[]) : [];
-  // console.log("messages", messages);
-  
+  console.log("messages", getAgent.data);
 
   const shareLink = () => {
     return encodeURI(`${env.NEXT_PUBLIC_VERCEL_URL}${router.asPath}`);
@@ -58,8 +57,7 @@ const AgentPage: NextPage = () => {
     { id: 3, address: "Chợ Bến Thành (Ben Thanh Market)" },
     {
       id: 4,
-      address:
-        "Nhà Thờ Đức Bà",
+      address: "Nhà Thờ Đức Bà",
     },
   ];
 

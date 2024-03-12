@@ -2,9 +2,7 @@ import { type GetStaticProps, type NextPage } from "next";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import React, { useEffect, useRef } from "react";
-
 import nextI18NextConfig from "../../next-i18next.config.js";
-import HelpDialog from "../components/dialog/HelpDialog";
 import { SignInDialog } from "../components/dialog/SignInDialog";
 import Chat from "../components/index/chat";
 import Landing from "../components/index/landing";
@@ -142,12 +140,12 @@ const Home: NextPage = () => {
         handleRestart();
       }}
     >
-
       <SignInDialog show={showSignInDialog} setOpen={setShowSignInDialog} />
       <div id="content" className="flex min-h-screen w-full items-center justify-center">
         <div
           id="layout"
-          className="relative flex h-screen w-full max-w-screen-md flex-col items-center justify-center gap-5 overflow-hidden p-2 py-10 sm:gap-3 sm:p-4"
+          // className="relative flex h-screen w-full max-w-screen-md flex-col items-center justify-center gap-5 overflow-hidden p-2 py-10 sm:gap-3 sm:p-4"
+          className="relative flex w-full max-w-screen-md flex-col items-center justify-center gap-5 overflow-hidden p-2 py-10 sm:gap-3 sm:p-4"
         >
           {agent !== null ? (
             <Chat

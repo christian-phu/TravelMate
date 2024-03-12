@@ -13,14 +13,10 @@ const BannerBadge = ({ children, className, ...props }: BadgeProps) => (
     )}
   >
     <a
-      className="animate-border-pulse py group relative flex w-max cursor-pointer items-center gap-2 rounded-full bg-black px-4 py-2 text-xs text-white"
+      className="animate-border-pulse py group relative flex w-max cursor-pointer items-center gap-2 rounded-full bg-white px-4 py-2 text-xs text-black"
       {...props}
     >
       <span>{children}</span>
-      <FaChevronRight
-        size={10}
-        className="font-thin text-gray-400 transition-transform duration-300 group-hover:translate-x-1"
-      />
     </a>
   </div>
 );
