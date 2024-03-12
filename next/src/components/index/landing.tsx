@@ -97,7 +97,7 @@ const Landing = (props: LandingProps) => {
           type="textarea"
         />
 
-        <div>
+        {/* <div>
           <form className="mx-auto" onSubmit={handleSubmit}>
             <div className="mb-5">
               <label
@@ -232,21 +232,21 @@ const Landing = (props: LandingProps) => {
               </select>
             </div>
             <div className="mb-5 flex justify-center">
-              {/* <button
+              <button
                 type="submit"
                 className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Submit
-              </button> */}
-              {/* <Button
+              </button>
+              <Button
                 type="submit"
                 className="my-5 border-0 bg-gradient-to-t from-[#02FCF1] to-[#A02BFE] subpixel-antialiased saturate-[75%] hover:saturate-100"
               >
                 <FaPlay />
-              </Button> */}
+              </Button>
             </div>
           </form>
-        </div>
+        </div> */}
 
         <div className="flex w-full flex-row items-center justify-center gap-3">
               {/* <Button

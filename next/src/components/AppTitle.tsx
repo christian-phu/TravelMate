@@ -20,13 +20,13 @@ const AppTitle = () => {
           <BannerBadge
             className="md:hidden"
           >
-            Automate your business with Agents
+            Plan your next adventure
           </BannerBadge>
         </div>
         <div
           className="hidden md:flex"
         >
-          <BannerBadge>Interested in automating businesses with AI Agents? Apply here</BannerBadge>
+          <BannerBadge>Turn your next trip into a hassle-free experience with Viettrip Agent.</BannerBadge>
         </div>
       </div>
     </div>

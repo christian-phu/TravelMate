@@ -42,16 +42,16 @@ export default function NavBar() {
           <>
             <div className="align-center mx-8 flex h-16 flex-row justify-between">
               <div className="flex flex-shrink-0 cursor-pointer items-center lg:flex-1">
-                {/* <Link href="/">
-                  <Image
+                <Link href="/">
+                  {/* <Image
                     src="/logos/dark-default-solid.svg"
                     width="25"
                     height="25"
                     alt="Reworkd AI"
                     className="mb-1 mr-2 invert-0"
-                  />
-                </Link> */}
-                <span className="text-xl font-light tracking-wider">Viettrip</span>
+                  /> */}
+                  <span className="text-xl font-light tracking-wider">Viettrip Agent</span>
+                </Link>
               </div>
               <div className="hidden flex-1 items-center justify-center xmd:flex">
                 <div className="border-gradient flex h-[42px] items-center self-center overflow-hidden rounded-full bg-opacity-5 px-2 py-1 backdrop-blur-lg">
