@@ -41,9 +41,9 @@ const Landing = (props: LandingProps) => {
       >
         <AppTitle />
       </motion.div>
-      <div className="absolute left-0 right-0 m-auto grid place-items-center overflow-hidden opacity-40">
+      {/* <div className="absolute left-0 right-0 m-auto grid place-items-center overflow-hidden opacity-40">
         <Globe />
-      </div>
+      </div> */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
