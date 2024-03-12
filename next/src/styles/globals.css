@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background: #a2d2e0;
+  background: white;
 }
 
 .resend-font-effect-hero {
@@ -16,7 +16,7 @@ body {
   /* Mark as important to override react flow styling */
   /* background: linear-gradient(white, white) padding-box,
     linear-gradient(to bottom, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0.15)) border-box !important; */
-  border: 1px solid white !important;
+  border: 1px solid black !important;
 }
 
 .radial-background-1 {
