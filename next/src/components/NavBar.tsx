@@ -21,8 +21,7 @@ import Link from "next/link";
 
 const navigation = [
   { name: "Welcome", href: "/welcome", icon: <HomeIcon /> },
-  { name: "Home", href: "/", icon: <HomeIcon /> },
-  { name: "Template", href: "/templates", icon: <DocsIcon /> },
+  { name: "Home", href: "/", icon: <DocsIcon /> },
   { name: "Setting", href: "/settings", icon: <PricingIcon /> },
   { name: "MyTrip", href: "/mytrip", icon: <BlogsIcon /> },
 ];
