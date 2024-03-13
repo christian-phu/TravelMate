@@ -12,8 +12,7 @@ const HomePage = () => {
   return (
     <div className="min-w-screen mx-6 grid min-h-screen place-items-center bg-black py-2 selection:bg-purple-700/25 lg:overflow-x-hidden lg:overflow-y-hidden">
       <AppHead
-        title="Reworkd"
-        ogTitle="Automate core business workflows with the help of AI Agents"
+        title="Viettrip AI"
       />
       <div className="absolute -z-50  h-full w-full bg-black" />
       <Image src="/stars.svg" alt="stars" fill className="pointer-events-none absolute invert-0" />
