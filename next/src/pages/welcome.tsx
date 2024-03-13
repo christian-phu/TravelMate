@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 
 import FadeIn from "../components/motions/FadeIn";
 import PrimaryButton from "../components/PrimaryButton";
-import img from "../../public/img/hero2.svg";
 
 const welcome = () => {
   const router = useRouter();
