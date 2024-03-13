@@ -24,10 +24,10 @@ const AuthItem: FC<{
   const organization = user?.organizations?.at(0)?.name;
 
   return (
-    <div className="flex items-center justify-between bg-white rounded-lg">
+    <div className="flex items-center justify-between rounded-full bg-white">
       <div
         className={clsx(
-          "flex flex-1 cursor-pointer items-center justify-start gap-3 rounded-md px-1.5 py-2 text-sm font-semibold text-slate-12 hover:bg-slate-5",
+          "flex flex-1 cursor-pointer items-center justify-start gap-2 rounded-full px-1.5 py-2 text-sm font-semibold text-slate-12 hover:bg-slate-4",
           classname
         )}
         onClick={(e) => {
@@ -57,7 +57,6 @@ const AuthItem: FC<{
             {user?.name}
           </p>
         </div>
-        {/* {user && <BsThreeDots className="ml-auto text-black" />} */}
         <Dialog
           inline
           open={showDialog}
