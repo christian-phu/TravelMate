@@ -39,7 +39,7 @@ const welcome = () => {
   return (
     <div
       className="flex h-full min-h-screen w-full items-center justify-center overflow-hidden"
-      style={{ backgroundImage: "url(/img/hero4.svg)", backgroundSize: "cover" }}
+      style={{ backgroundImage: "url(/hero.svg)", backgroundSize: "cover" }}
     >
       <motion.div
         className="max-h-4xl flex h-full w-full max-w-4xl flex-col items-center justify-center text-center font-sans"
