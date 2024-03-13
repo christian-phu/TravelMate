@@ -30,10 +30,7 @@ const welcome = () => {
 
   const handleButtonClick = () => {
     setButtonClicked(true);
-    setInterval(() => {
-      // Wait 1 second and redirect
-      router.push("/").catch(console.error);
-    }, 1000);
+    router.push("/").catch(console.error);
   };
 
   return (
