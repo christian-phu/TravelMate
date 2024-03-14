@@ -1,29 +1,21 @@
-import { Disclosure } from "@headlessui/react";
 import clsx from "clsx";
+import { Disclosure } from "@headlessui/react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { FaBars, FaChevronRight, FaTimes } from "react-icons/fa";
-
-import GlowWrapper from "./GlowWrapper";
 import CycleIcons from "./motions/CycleIcons";
 import FadeIn from "./motions/FadeIn";
-import PrimaryButton from "./PrimaryButton";
-import TextButton from "./TextButton";
-import BlogsIcon from "../../public/icons/icon-blogs.svg";
-import DocsIcon from "../../public/icons/icon-docs.svg";
-import GithubIcon from "../../public/icons/icon-github.svg";
-import HomeIcon from "../../public/icons/icon-home.svg";
-import PricingIcon from "../../public/icons/icon-pricing.svg";
 import AuthItem from "../components/sidebar/AuthItem";
 import { useAuth } from "../hooks/useAuth";
-import Link from "next/link";
+import { FaBars, FaTimes } from "react-icons/fa";
+import { FaHouse } from "react-icons/fa6";
+import { MdAddLocationAlt } from "react-icons/md";
+import { AiFillSetting } from "react-icons/ai";
 
 const navigation = [
-  { name: "Home", href: "/", icon: <HomeIcon /> },
-  { name: "Welcome", href: "/welcome", icon: <DocsIcon /> },
-  { name: "Setting", href: "/settings", icon: <PricingIcon /> },
-  { name: "MyTrip", href: "/mytrip", icon: <BlogsIcon /> },
+  { name: "Home", href: "/", icon: <FaHouse /> },
+  { name: "MyTrip", href: "/mytrip", icon: <MdAddLocationAlt /> },
+  { name: "Setting", href: "/settings", icon: <AiFillSetting /> },
 ];
 
 export default function NavBar() {

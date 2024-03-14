@@ -72,7 +72,7 @@ const SettingsPage = () => {
 
   return (
     <DashboardLayout>
-      <div className="min-h-screen flex-grow">
+      <div className="min-h-screen flex-grow md:px-28 md:mb-10 ">
         <div className="">
           <FadeIn
             initialX={-45}
