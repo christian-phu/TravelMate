@@ -84,7 +84,7 @@ const Landing = (props: LandingProps) => {
         transition={{ duration: 0.75, delay: 0.5, type: "easeInOut" }}
         className="z-10 flex w-full flex-col gap-6"
       >
-        <div>
+        <div className="m-5">
           <form className="mx-auto" onSubmit={handleSubmit}>
             <div className="mb-5">
               <label
