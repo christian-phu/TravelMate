@@ -17,7 +17,8 @@ import DashboardLayout from "../../layout/dashboard";
 import type { Message } from "../../types/message";
 import { api } from "../../utils/api";
 import { languages } from "../../utils/languages";
-import Map from "../../components/Map";
+import Map from "../../components/map";
+import clsx from "clsx";
 
 const AgentPage: NextPage = () => {
   const [t] = useTranslation();
@@ -44,27 +45,17 @@ const AgentPage: NextPage = () => {
   };
 
   const addressData = [
-    {
-      id: 0,
-      address:
-        "Thảo Cầm Viên (Saigon Zoo And Botanical Garden), 2B Nguyễn Bỉnh Khiêm, Phường Bến Nghé, Quận 1, Ho Chi Minh City, Vietnam",
-    },
-    {
-      id: 1,
-      address: "Dam Sen Water Park, Số 03 Hòa Bình, Phường 3, Quận 11, Ho Chi Minh City, Vietnam",
-    },
-    { id: 2, address: "Bến Nhà Rồng, Ho Chi Minh City, Vietnam" },
-    { id: 3, address: "Chợ Bến Thành (Ben Thanh Market)" },
-    {
-      id: 4,
-      address: "Nhà Thờ Đức Bà",
-    },
+    { id: 0, address: "Thảo Cầm Viên" },
+    { id: 1, address: "Dam Sen Water Park"},
+    { id: 2, address: "Bến Nhà Rồng" },
+    { id: 3, address: "Chợ Bến Thành" },
+    { id: 4, address: "Nhà Thờ Đức Bà" },
   ];
 
   return (
     <DashboardLayout>
-      <div className="flex flex-wrap">
-        <div className="p-4" style={{ maxHeight: "calc(100vh - 4rem)", overflowX: "scroll" }}>
+      <section className="grid h-screen w-screen md:grid-cols-2">
+        <div className="pl-8" style={{ maxHeight: "calc(100vh)", overflowX: "scroll" }}>
           <div className="flex w-full max-w-screen-md flex-grow flex-col items-center overflow-hidden">
             <ChatWindow messages={messages} title={getAgent?.data?.name} visibleOnMobile>
               {messages.map((message, index) => {
@@ -76,7 +67,7 @@ const AgentPage: NextPage = () => {
               })}
             </ChatWindow>
           </div>
-          <div className="flex flex-row gap-2">
+          <div className="flex flex-row items-center gap-2 mb-16">
             <Button icon={<FaBackspace />} onClick={() => void router.push("/")}>
               Back
             </Button>
@@ -90,7 +81,6 @@ const AgentPage: NextPage = () => {
             >
               Delete
             </Button>
-
             <Button
               icon={<FaShare />}
               onClick={() => {
@@ -109,10 +99,10 @@ const AgentPage: NextPage = () => {
             className="bg-gray-950 text-sm"
           />
         </div>
-        <div className="p-4" style={{ width: 580, height: 630 }}>
+        <div className="" style={{ maxHeight: "calc(100vh)", overflowX: "scroll" }}>
           <Map addressData={addressData} />
         </div>
-      </div>
+      </section>
     </DashboardLayout>
   );
 };
