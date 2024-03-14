@@ -21,7 +21,7 @@ export default function MyTrip() {
   // const sortedBlogs = sortBlogs(data ?? []);
   return (
     <DashboardLayout>
-      <section className="sxl:px-32 flex w-full flex-col items-center  justify-center p-5 sm:px-10 md:px-24">
+      <section className="xl:px-32 flex w-full flex-col items-center justify-center p-5 sm:px-10 md:px-24">
         <div className="mt-5 flex w-full  justify-between">
           <h3 className="text-dark dark:text-light inline-block w-fit text-2xl font-bold capitalize md:text-4xl">
             Your Trips
@@ -35,7 +35,6 @@ export default function MyTrip() {
             New Trip
           </Link>
         </div>
-
         <div className="mt-12 grid grid-cols-1 grid-rows-2 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {status === "unauthenticated" && (
             <div className="p-1 text-sm text-slate-12">
