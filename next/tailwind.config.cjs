@@ -38,7 +38,6 @@ module.exports = {
       }),
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))", // Add bg-gradient-radial for radial gradients
-        "hero-pattern": "url('public/img/hero2.svg')",
       },
       boxShadow: {
         xs: "0px 0px 0px 0.75px rgba(0, 0, 0, 0.05), 0px 2px 4px rgba(0, 0, 0, 0.05)",

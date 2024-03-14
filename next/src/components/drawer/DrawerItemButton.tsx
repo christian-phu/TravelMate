@@ -11,16 +11,15 @@ export const DrawerItemButton = (props: DrawerItemProps) => {
   const { text, onClick } = props;
 
   return (
-    <button
-      type="button"
-      className={clsx(
-        "cursor-pointer items-center rounded-md text-slate-12 hover:bg-slate-5",
-        props.className
-      )}
-      onClick={onClick}
-    >
-      <span className="line-clamp-1 text-left text-sm font-medium">{text}</span>
-    </button>
+    <>
+      <div
+        className="w-full cursor-pointer rounded-lg border-2 border-slate-7 bg-slate-1 p-4 text-sm text-slate-12 opacity-90 shadow-depth-2 transition-all duration-300 hover:bg-slate-3 sm:text-base"
+        onClick={onClick}
+      >
+        <p className="text-lg font-bold">ViettripGPT 🌴</p>
+        <span className="line-clamp-1 text-left text-sm font-bold">{text}</span>
+      </div>
+    </>
   );
 };
 

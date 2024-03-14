@@ -6,11 +6,11 @@ body {
   background: white;
 }
 
-.resend-font-effect-hero {
-  /* #Resend */
+/* .resend-font-effect-hero {
+  #Resend
   -webkit-text-fill-color: transparent;
   text-shadow: -1px -1px 0 hsla(0, 0%, 100%, 0.15), 1px 1px 0 rgba(0, 0, 0, 0.1);
-}
+} */
 
 .border-gradient {
   /* Mark as important to override react flow styling */
@@ -183,16 +183,4 @@ Not supports in Firefox and IE */
   to {
     background-position: 100% 0;
   }
-}
-
-.bg-stars {
-  animation: moveBackground 30s linear infinite;
-  background: url("/stars.svg");
-  background-size: cover;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: -1;
 }
