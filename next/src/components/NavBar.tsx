@@ -39,7 +39,7 @@ export default function NavBar() {
       <Disclosure as="nav" className="z-50 w-full bg-transparent text-black">
         {({ open }) => (
           <>
-            <div className="align-center mx-8 flex h-16 flex-row justify-between">
+            <div className="align-center flex h-20 flex-row justify-between px-8 shadow-lg">
               <a href="/" className="flex flex-shrink-0 cursor-pointer items-center lg:flex-1">
                 <Image
                   src="/logos/logo11.svg"

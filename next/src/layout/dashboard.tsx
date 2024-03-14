@@ -7,16 +7,14 @@ type DashboardLayoutProps = {
   onReload?: () => void;
 };
 
-export default function DashboardLayout (props: DashboardLayoutProps) {
+export default function DashboardLayout(props: DashboardLayoutProps) {
   return (
     <>
       <AppHead />
       <Navbar />
-      <main className="bg-gradient-to-b from-slate-7 to-slate-3">
-        <div className="min-w-screen min-h-screen">
-          {props.children}
-        </div>
+      <main>
+        <div className="min-w-screen min-h-screen">{props.children}</div>
       </main>
     </>
   );
-};
+}
