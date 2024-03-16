@@ -83,11 +83,11 @@ summarize_prompt = PromptTemplate(
     Write using clear markdown formatting in a style expected of the goal "{goal}".
     Be as clear, informative, and descriptive as necessary.
     You will not make up information or add any information outside of the above text.
-    Only use the given information and nothing more.
+    Only use the given information and nothing more. If there is no information provided, say "There is nothing to summarize".
 
-    At the end of the summary, find the travel destinations referenced in the paragraph above and return them in the following format:
-      [Location mentioned][location 1, location 2, ...]
-    If there is no information provided, say "There is nothing to summarize".
+
+    At the end of the summary, find all names of the travel destinations referenced in the paragraph above and return them in the following format:
+    [Location mentioned][location 1, location 2, ...]
     """,
     input_variables=["goal", "language", "text"],
 )
