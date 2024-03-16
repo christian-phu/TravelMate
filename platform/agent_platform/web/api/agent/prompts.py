@@ -6,7 +6,7 @@ start_goal_prompt = PromptTemplate(
 Your mission is to create a great travel plan.
 You answer in the "{language}" language. You have the following objective "{goal}".
 Return a list of search queries that would be required to answer the entirety of the objective.
-Limit the list to a maximum of 10 queries. Ensure the queries are as succinct as possible.
+Limit the list to a maximum of 7 queries. Ensure the queries are as succinct as possible.
 For simple questions use a single query.
 
 
@@ -85,6 +85,8 @@ summarize_prompt = PromptTemplate(
     You will not make up information or add any information outside of the above text.
     Only use the given information and nothing more.
 
+    At the end of the summary, find the travel destinations referenced in the paragraph above and return them in the following format:
+      [Location mentioned][location 1, location 2, ...]
     If there is no information provided, say "There is nothing to summarize".
     """,
     input_variables=["goal", "language", "text"],
@@ -114,12 +116,11 @@ summarize_with_sources_prompt = PromptTemplate(
 chat_prompt = PromptTemplate(
     template="""You must answer in the "{language}" language.
 
-    You are a helpful AI Assistant that will provide responses based on the current conversation history.
+    You are a helpful travel Assistant that will provide responses based on the current conversation history.
 
-    The human will provide previous messages as context. Use ONLY this information for your responses.
-    Do not make anything up and do not add any additional information.
-    If you have no information for a given question in the conversation history,
-    say "I do not have any information on this".
+    Humans will provide previous messages as context. Please try to use this information in your answer.
+    And answer based on your knowledge of travel.
+    If the question is not related to your field, answer: "I don't have any information about this."
     """,
     input_variables=["language"],
 )
