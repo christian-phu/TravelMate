@@ -55,3 +55,4 @@ yarn-error.log*
 schema.prismae
 *.sql
 !/db/setup.sql
+*.idea
