@@ -103,5 +103,4 @@ class NewsSearch(Tool):
 
         if len(snippets) == 0:
             return stream_string("No good Google Search Result was found", True)
-        print(f"-----------\nSnippets: {snippets}")
         return summarize_with_sources(self.model, self.language, goal, task, snippets)
