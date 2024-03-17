@@ -5,11 +5,6 @@ SimilarTasks = List[Tuple[str, float]]
 
 
 class AgentMemory(ABC):
-    """
-    Base class for AgentMemory
-    Expose __enter__ and __exit__ to ensure connections get closed within requests
-    """
-
     @abstractmethod
     def __enter__(self) -> "AgentMemory":
         raise NotImplementedError()

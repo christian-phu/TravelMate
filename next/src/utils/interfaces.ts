@@ -15,9 +15,9 @@ export const toApiModelSettings = (modelSettings: ModelSettings, session?: Sessi
 
   return {
     language: modelSettings.language.name,
-    model: allowCustomization ? modelSettings.customModelName : "gpt-3.5-turbo",
+    model: allowCustomization ? modelSettings.customModelName : "gpt-3.5-turbo-16k",
     temperature: modelSettings.customTemperature,
-    max_tokens: allowCustomization ? modelSettings.maxTokens : 500,
+    max_tokens: allowCustomization ? modelSettings.maxTokens : 1250,
     custom_api_key: modelSettings.customApiKey,
   };
 };

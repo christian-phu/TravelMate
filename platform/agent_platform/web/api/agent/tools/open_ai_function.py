@@ -5,14 +5,9 @@ from agent_platform.web.api.agent.tools.tools import get_tool_name
 
 
 class FunctionDescription(TypedDict):
-    """Representation of a callable function to the OpenAI API."""
-
     name: str
-    """The name of the function."""
     description: str
-    """A description of the function."""
     parameters: dict[str, object]
-    """The parameters of the function."""
 
 
 def get_tool_function(tool: Type[Tool]) -> FunctionDescription:
@@ -28,7 +23,7 @@ def get_tool_function(tool: Type[Tool]) -> FunctionDescription:
                 "reasoning": {
                     "type": "string",
                     "description": (
-                        f"Reasoning is how the task will be accomplished with the current function. "
+                        "Reasoning is how the task will be accomplished with the current function. "
                         "Detail your overall plan along with any concerns you have."
                         "Ensure this reasoning value is in the user defined language "
                     ),

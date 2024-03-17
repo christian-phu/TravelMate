@@ -30,14 +30,14 @@ const welcome = () => {
 
   const handleButtonClick = () => {
     setButtonClicked(true);
-    setInterval(() => {
-      // Wait 1 second and redirect
-      router.push("/").catch(console.error);
-    }, 1000);
+    router.push("/").catch(console.error);
   };
 
   return (
-    <div className="flex h-full min-h-screen w-full items-center justify-center overflow-hidden bg-black">
+    <div
+      className="flex h-full min-h-screen w-full items-center justify-center overflow-hidden"
+      style={{ backgroundImage: "url(/hero.svg)", backgroundSize: "cover" }}
+    >
       <motion.div
         className="max-h-4xl flex h-full w-full max-w-4xl flex-col items-center justify-center text-center font-sans"
         initial={{ scale: 5, y: 1100, opacity: 1 }}
@@ -54,12 +54,13 @@ const welcome = () => {
         </motion.div>
         <FadeIn duration={3} delay={0.45} initialY={-40}>
           <h1 className="mb-6 text-5xl font-semibold tracking-widest text-white">
-            Welcome to Reworkd
+            Welcome to Viettrip AI
           </h1>
         </FadeIn>
         <FadeIn duration={2.85} delay={0.6} initialY={-40}>
-          <p className="mb-8 max-w-lg text-center font-light text-neutral-500">
-            Optimize web scraping with AI Agents that auto-generates, repairs scripts, and ensures uninterrupted data retrieval. Scale your data extraction effortlessly.
+          <p className="mb-8 max-w-lg text-center font-light text-white">
+            Optimize web scraping with AI Agents that auto-generates, repairs scripts, and ensures
+            uninterrupted data retrieval. Scale your data extraction effortlessly.
           </p>
         </FadeIn>
         <FadeIn duration={2.7} delay={0.75} initialY={-40}>

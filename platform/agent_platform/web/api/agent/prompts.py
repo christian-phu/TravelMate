@@ -1,28 +1,19 @@
 from langchain.prompts import PromptTemplate
 
-# Create initial tasks using plan and solve prompting
-# https://github.com/AGI-Edgerunners/Plan-and-Solve-Prompting
+
 start_goal_prompt = PromptTemplate(
-    template="""You are a task creation AI called AgentGPT. 
+    template="""You are a task creation AI called Trip Agent.
 Your mission is to create a great travel plan.
-You answer in the "{language}" language. You have the following objective "{goal}". 
-Return a list of search queries that would be required to answer the entirety of the objective. 
-Limit the list to a maximum of 10 queries. Ensure the queries are as succinct as possible. 
+You answer in the "{language}" language. You have the following objective "{goal}".
+Return a list of search queries that would be required to answer the entirety of the objective.
+Limit the list to a maximum of 7 queries. Ensure the queries are as succinct as possible.
 For simple questions use a single query.
 
-Queries must address the following criteria, if not, please add them yourself as needed:
-- Weather
-- Travel Packing Lists
-- Clothing Suggestions
-- Accommodation
-- Transport
-- Souvenir
-- Specific timeline for the trip
 
 Return the response as a JSON array of strings. Examples:
 
 query: "Who is considered the best NBA player in the current season?", answer: ["current NBA MVP candidates"]
-query: "How does the Olympicpayrolle brand currently stand in the market, and what are its prospects and strategies for expansion in NJ, NY, and PA?", answer: ["Olympicpayroll brand comprehensive analysis 2023", "customer reviews of Olympicpayroll.com", "Olympicpayroll market position analysis", "payroll industry trends forecast 2023-2025", "payroll services expansion strategies in NJ, NY, PA"]
+query: "How does the Olympicpayroll brand currently stand in the market, and what are its prospects and strategies for expansion in NJ, NY, and PA?", answer: ["Olympicpayroll brand comprehensive analysis 2023", "customer reviews of Olympicpayroll.com", "Olympicpayroll market position analysis", "payroll industry trends forecast 2023-2025", "payroll services expansion strategies in NJ, NY, PA"]
 query: "How can I create a function to add weight to edges in a digraph using {language}?", answer: ["algorithm to add weight to digraph edge in {language}"]
 query: "What is the current weather in New York?", answer: ["current weather in New York"]
 query: "5 + 5?", answer: ["Sum of 5 and 5"]
@@ -92,9 +83,13 @@ summarize_prompt = PromptTemplate(
     Write using clear markdown formatting in a style expected of the goal "{goal}".
     Be as clear, informative, and descriptive as necessary.
     You will not make up information or add any information outside of the above text.
-    Only use the given information and nothing more.
+    Only use the given information and nothing more. If there is no information provided, say "There is nothing to summarize".
 
-    If there is no information provided, say "There is nothing to summarize".
+
+    At the end of the summary, find all names of the travel destinations referenced in the paragraph above and return them in the following format:
+    [Location mentioned][location 1, location 2, ...]
+    Examples:
+    [Location mentioned][Ha Noi, Ho Chi Minh, Da Lat, ...]
     """,
     input_variables=["goal", "language", "text"],
 )
@@ -108,11 +103,11 @@ summarize_with_sources_prompt = PromptTemplate(
 
     Cite sources for sentences via markdown links using the source link as the link and the index as the text.
     Use in-line sources. Do not separately list sources at the end of the writing.
-    
-    If the query cannot be answered with the provided information, mention this and provide a reason why along with what it does mention. 
+
+    If the query cannot be answered with the provided information, mention this and provide a reason why along with what it does mention.
     Also cite the sources of what is actually mentioned.
-    
-    Example sentences of the paragraph: 
+
+    Example sentences of the paragraph:
     "So this is a cited sentence at the end of a paragraph[1](https://test.com). This is another sentence."
     "Stephen curry is an american basketball player that plays for the warriors[1](https://www.britannica.com/biography/Stephen-Curry)."
     "The economic growth forecast for the region has been adjusted from 2.5% to 3.1% due to improved trade relations[1](https://economictimes.com), while inflation rates are expected to remain steady at around 1.7% according to financial analysts[2](https://financeworld.com)."
@@ -120,31 +115,15 @@ summarize_with_sources_prompt = PromptTemplate(
     input_variables=["language", "query", "snippets"],
 )
 
-summarize_sid_prompt = PromptTemplate(
-    template="""You must answer in the "{language}" language.
-
-    Parse and summarize the following text snippets "{snippets}".
-    Write using clear markdown formatting in a style expected of the goal "{goal}".
-    Be as clear, informative, and descriptive as necessary and attempt to
-    answer the query: "{query}" as best as possible.
-    If any of the snippets are not relevant to the query,
-    ignore them, and do not include them in the summary.
-    Do not mention that you are ignoring them.
-
-    If there is no information provided, say "There is nothing to summarize".
-    """,
-    input_variables=["goal", "language", "query", "snippets"],
-)
-
 chat_prompt = PromptTemplate(
     template="""You must answer in the "{language}" language.
 
-    You are a helpful AI Assistant that will provide responses based on the current conversation history.
+    You are a helpful travel Assistant that will provide responses based on the current conversation history.
 
-    The human will provide previous messages as context. Use ONLY this information for your responses.
-    Do not make anything up and do not add any additional information.
-    If you have no information for a given question in the conversation history,
-    say "I do not have any information on this".
+    Humans will provide previous messages as context. Please try to use this information in your answer.
+    And answer based on your knowledge of travel.
+    If the question is not related to your field, answer: "I don't have any information about this."
     """,
     input_variables=["language"],
 )
+

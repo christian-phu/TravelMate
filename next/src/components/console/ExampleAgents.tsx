@@ -4,6 +4,7 @@ import React from "react";
 import { ExampleAgentButton } from "./ExampleAgentButton";
 import { useSID } from "../../hooks/useSID";
 import FadeIn from "../motions/FadeIn";
+import { useState } from "react";
 
 type ExampleAgentsProps = {
   setAgentRun?: (name: string, goal: string) => void;
@@ -31,6 +32,7 @@ const ExampleAgents = ({ setAgentRun, setShowSignIn }: ExampleAgentsProps) => {
           </ExampleAgentButton>
         </div>
       </FadeIn>
+
     </>
   );
 };

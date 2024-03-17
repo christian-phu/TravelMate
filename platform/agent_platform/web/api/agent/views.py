@@ -31,13 +31,12 @@ from agent_platform.web.api.agent.tools.tools import get_external_tools, get_too
 router = APIRouter()
 
 
-@router.post(
-    "/start",
-)
+@router.post("/start")
 async def start_tasks(
     req_body: AgentRun = Depends(agent_start_validator),
     agent_service: AgentService = Depends(get_agent_service(agent_start_validator)),
 ) -> NewTasksResponse:
+
     new_tasks = await agent_service.start_goal_agent(goal=req_body.goal)
     return NewTasksResponse(newTasks=new_tasks, run_id=req_body.run_id)
 

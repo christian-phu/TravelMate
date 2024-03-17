@@ -1,11 +1,6 @@
 from typing import Any, List
 from urllib.parse import quote
 
-import aiohttp
-from aiohttp import ClientResponseError
-from fastapi.responses import StreamingResponse as FastAPIStreamingResponse
-from loguru import logger
-
 from agent_platform.settings import settings
 from agent_platform.web.api.agent.stream_mock import stream_string
 from agent_platform.web.api.agent.tools.reason import Reason
@@ -15,36 +10,34 @@ from agent_platform.web.api.agent.tools.utils import (
     summarize_with_sources,
 )
 
-# Search google via serper.dev. Adapted from LangChain
-# https://github.com/hwchase17/langchain/blob/master/langchain/utilities
+import aiohttp
+from aiohttp import ClientResponseError
+from fastapi.responses import StreamingResponse
+from loguru import logger
 
 
-async def _google_serper_search_results(
-    search_term: str, search_type: str = "search"
-) -> dict[str, Any]:
+async def _fetch_google_search_results(query: str, search_mode: str = "search") -> dict[str, Any]:
+    """Asynchronously fetch results from Google using a specific API."""
+    endpoint = f"https://google.serper.dev/{search_mode}"
     headers = {
         "X-API-KEY": settings.serp_api_key or "",
-        "Content-Type": "application/json",
-    }
-    params = {
-        "q": search_term,
-    }
+        "Content-Type": "application/json"}
+    params = {"q": query}
 
     async with aiohttp.ClientSession() as session:
-        async with session.post(
-            f"https://google.serper.dev/{search_type}", headers=headers, params=params
-        ) as response:
+        async with session.get(
+            endpoint,
+            headers=headers,
+            params=params
+            ) as response:
             response.raise_for_status()
-            search_results = await response.json()
-            return search_results
-
+            return await response.json()
 
 class Search(Tool):
     description = (
-        "Search Google for short up to date searches for simple questions about public information "
-        "news and people.\n"
+        "Search Google for short up to date searches for simple questions about popular information and people without regard to current events or trends."
     )
-    public_description = "Search google for information about current events."
+    public_description = "Search google for without regard to current events or trends."
     arg_description = "The query argument to search for. This value is always populated and cannot be an empty string."
     image_url = "/tools/google.png"
 
@@ -54,7 +47,7 @@ class Search(Tool):
 
     async def call(
         self, goal: str, task: str, input_str: str, *args: Any, **kwargs: Any
-    ) -> FastAPIStreamingResponse:
+    ) -> StreamingResponse:
         try:
             return await self._call(goal, task, input_str, *args, **kwargs)
         except ClientResponseError:
@@ -64,15 +57,20 @@ class Search(Tool):
             )
 
     async def _call(
-        self, goal: str, task: str, input_str: str, *args: Any, **kwargs: Any
-    ) -> FastAPIStreamingResponse:
-        results = await _google_serper_search_results(
+        self,
+        goal: str,
+        task: str,
+        input_str: str,
+        *args: Any,
+        **kwargs: Any
+    ) -> StreamingResponse:
+
+        results = await _fetch_google_search_results(
             input_str,
         )
 
-        k = 10  # Number of results to return
+        k = 5  # Number of results to return
         snippets: List[CitedSnippet] = []
-
         if results.get("answerBox"):
             answer_values = []
             answer_box = results.get("answerBox", {})
@@ -105,5 +103,5 @@ class Search(Tool):
 
         if len(snippets) == 0:
             return stream_string("No good Google Search Result was found", True)
-
         return summarize_with_sources(self.model, self.language, goal, task, snippets)
+

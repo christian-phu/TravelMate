@@ -9,11 +9,10 @@ import { getProviders, signIn, useSession } from "next-auth/react";
 import type { LiteralUnion } from "next-auth/react/types";
 import React, { useState } from "react";
 import { FaDiscord, FaGithub, FaGoogle } from "react-icons/fa";
-
 import FadeIn from "../components/motions/FadeIn";
-import GridLayout from "../layout/grid";
 import { authOptions } from "../server/auth/auth";
 import Input from "../ui/input";
+import AppHead from "../components/AppHead";
 
 const SignIn = ({ providers }: { providers: Provider }) => {
   const { data: session } = useSession();
@@ -26,23 +25,19 @@ const SignIn = ({ providers }: { providers: Provider }) => {
     .filter((detail): detail is ButtonDetail => detail !== undefined);
 
   return (
-    <GridLayout title="Sign in - Reworkd">
+    <>
+      <AppHead title="Sign in - Viettrip" />
       <div className="grid h-screen w-screen place-items-center bg-gradient-radial from-slate-1 via-20% to-transparent">
-        <div className="flex h-full w-full max-w-screen-lg flex-col items-center justify-center gap-10">
+        <div className="flex h-full w-full max-w-screen-lg flex-col items-center justify-center gap-10 px-5">
           <FadeIn
             duration={1.5}
             initialY={-50}
-            className="flex flex-col items-center justify-center gap-6 text-white invert"
+            className="flex flex-col items-center justify-center gap-6"
           >
-            <div className="flex flex-col items-center justify-center gap-16">
-              <Image
-                src="/logos/dark-default-gradient.svg"
-                width="150"
-                height="150"
-                alt="Reworkd AI"
-              />
-              <h1 className="bg-gradient-to-t from-white via-neutral-300 to-neutral-500 bg-clip-text text-center text-3xl font-bold leading-[1.1em] tracking-[-0.64px] text-transparent md:text-5xl">
-                Reworkd
+            <div className="flex flex-col items-center justify-center gap-10">
+              <Image src="/logo.svg" width="150" height="150" alt="Viettrip AI" />
+              <h1 className="bg-black bg-clip-text text-center text-3xl font-bold leading-[1.1em] tracking-[-0.64px] text-transparent md:text-5xl">
+                Viettrip AI
               </h1>
             </div>
           </FadeIn>
@@ -54,7 +49,7 @@ const SignIn = ({ providers }: { providers: Provider }) => {
           </FadeIn>
         </div>
       </div>
-    </GridLayout>
+    </>
   );
 };
 

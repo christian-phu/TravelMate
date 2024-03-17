@@ -3,13 +3,16 @@ from typing import List, Type
 from agent_platform.db.crud.oauth import OAuthCrud
 from agent_platform.schemas.user import UserBase
 from agent_platform.web.api.agent.tools.search import Search
-from agent_platform.web.api.agent.tools.sidsearch import SID
+from agent_platform.web.api.agent.tools.news_search import NewsSearch
 from agent_platform.web.api.agent.tools.tool import Tool
 
 
 async def get_user_tools(
-    tool_names: List[str], user: UserBase, crud: OAuthCrud
+    tool_names: List[str],
+    user: UserBase,
+    crud: OAuthCrud
 ) -> List[Type[Tool]]:
+
     tools = list(map(get_tool_from_name, tool_names)) + get_default_tools()
     return [tool for tool in tools if await tool.dynamic_available(user, crud)]
 
@@ -24,13 +27,13 @@ def get_available_tools_names() -> List[str]:
 
 def get_external_tools() -> List[Type[Tool]]:
     return [
-        SID,
+        NewsSearch
     ]
 
 
 def get_default_tools() -> List[Type[Tool]]:
     return [
-        Search,
+        Search
     ]
 
 
@@ -43,8 +46,6 @@ def format_tool_name(tool_name: str) -> str:
 
 
 def get_tools_overview(tools: List[Type[Tool]]) -> str:
-    """Return a formatted string of name: description pairs for all available tools"""
-
     # Create a list of formatted strings
     formatted_strings = [
         f"'{get_tool_name(tool)}': {tool.description}" for tool in tools

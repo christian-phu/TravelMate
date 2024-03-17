@@ -5,7 +5,7 @@ from typing import Any, Dict, List
 
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.embeddings.base import Embeddings
-from pinecone import Index  # import doesnt work on plane wifi
+from pinecone import Index
 from pydantic import BaseModel
 
 from agent_platform.settings import settings
@@ -28,18 +28,19 @@ class QueryResult(BaseModel):
 
 
 class PineconeMemory(AgentMemory):
-    """
-    Wrapper around pinecone
-    """
+    def __init__(
+        self,
+        index_name: str,
+        namespace: str = ""
+        ):
 
-    def __init__(self, index_name: str, namespace: str = ""):
         self.index = Index(settings.pinecone_index_name)
         self.namespace = namespace or index_name
 
     @timed_function(level="DEBUG")
     def __enter__(self) -> AgentMemory:
         self.embeddings: Embeddings = OpenAIEmbeddings(
-            client=None,  # Meta private value but mypy will complain its missing
+            client=None,
             openai_api_key=settings.openai_api_key,
         )
 
@@ -77,7 +78,7 @@ class PineconeMemory(AgentMemory):
     def get_similar_tasks(
         self, text: str, score_threshold: float = 0.95
     ) -> List[QueryResult]:
-        # Get similar tasks
+
         vector = self.embeddings.embed_query(text)
         results = self.index.query(
             vector=vector,

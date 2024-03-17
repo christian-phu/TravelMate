@@ -27,8 +27,12 @@ def parse_with_handling(parser: BaseOutputParser[T], completion: str) -> T:
 
 
 async def openai_error_handler(
-    func: Callable[..., Any], *args: Any, settings: ModelSettings, **kwargs: Any
+    func: Callable[..., Any],
+    *args: Any,
+    settings: ModelSettings,
+    **kwargs: Any
 ) -> Any:
+
     try:
         return await func(*args, **kwargs)
     except ServiceUnavailableError as e:

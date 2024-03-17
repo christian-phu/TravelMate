@@ -9,9 +9,6 @@ from agent_platform.services.tokenizer.dependencies import get_token_service
 from agent_platform.services.tokenizer.token_service import TokenService
 from agent_platform.settings import settings
 from agent_platform.web.api.agent.agent_service.agent_service import AgentService
-from agent_platform.web.api.agent.agent_service.mock_agent_service import (
-    MockAgentService,
-)
 from agent_platform.web.api.agent.agent_service.open_ai_agent_service import (
     OpenAIAgentService,
 )
@@ -30,8 +27,6 @@ def get_agent_service(
         token_service: TokenService = Depends(get_token_service),
         oauth_crud: OAuthCrud = Depends(OAuthCrud.inject),
     ) -> AgentService:
-        if settings.ff_mock_mode_enabled:
-            return MockAgentService()
 
         model = create_model(
             settings,

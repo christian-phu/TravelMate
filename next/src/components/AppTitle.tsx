@@ -4,7 +4,7 @@ import BannerBadge from "./BannerBadge";
 
 const AppTitle = () => {
   return (
-    <div id="title" className="relative flex flex-col items-center">
+    <div id="title" className="relative mt-16 flex flex-col items-center">
       <div className="flex flex-row items-start">
         <span
           className="text-4xl font-bold text-slate-12 xs:text-5xl sm:text-7xl"
@@ -12,27 +12,17 @@ const AppTitle = () => {
             textShadow: "0px 5px 5px rgba(0, 0, 0, 0.1)",
           }}
         >
-          AgentGPT
+          Viettrip Agent
         </span>
       </div>
-      <div className="mt-3 text-center font-mono text-[0.7em] font-bold text-white">
+      <div className="mt-5 text-center font-mono text-[0.7em] font-bold text-white">
         <div>
-          <BannerBadge
-            className="md:hidden"
-            onClick={() => {
-              window.open("https://6h6bquxo5g1.typeform.com/to/qscfsOf1", "_blank");
-            }}
-          >
-            Automate your business with Agents
-          </BannerBadge>
+          <BannerBadge className="md:hidden">Plan your next adventure</BannerBadge>
         </div>
-        <div
-          className="hidden md:flex"
-          onClick={() => {
-            window.open("https://6h6bquxo5g1.typeform.com/to/qscfsOf1", "_blank");
-          }}
-        >
-          <BannerBadge>Interested in automating businesses with AI Agents? Apply here</BannerBadge>
+        <div className="hidden md:flex">
+          <BannerBadge>
+            Turn your next trip into a hassle-free experience with Viettrip Agent.
+          </BannerBadge>
         </div>
       </div>
     </div>
