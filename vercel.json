@@ -1,15 +1,14 @@
 {
-  "devCommand": "uvicorn vercel:app --host 0.0.0.0 --port 3000",
   "builds": [
       {
-          "src": "platform/agent_platform/__main__.py",
+          "src": "platform/agent_platform",
           "use": "@vercel/python"
       }
   ],
   "routes": [
       {
           "src": "/(.*)",
-          "dest": "platform/agent_platform/__main__.py"
+          "dest": "platform/agent_platform"
       }
   ]
 }
