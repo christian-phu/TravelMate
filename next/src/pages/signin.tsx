@@ -26,7 +26,7 @@ const SignIn = ({ providers }: { providers: Provider }) => {
 
   return (
     <>
-      <AppHead title="Sign in - Viettrip" />
+      <AppHead title="Sign in - TravelMate" />
       <div className="grid h-screen w-screen place-items-center bg-gradient-radial from-slate-1 via-20% to-transparent">
         <div className="flex h-full w-full max-w-screen-lg flex-col items-center justify-center gap-10 px-5">
           <FadeIn
@@ -35,9 +35,9 @@ const SignIn = ({ providers }: { providers: Provider }) => {
             className="flex flex-col items-center justify-center gap-6"
           >
             <div className="flex flex-col items-center justify-center gap-10">
-              <Image src="/logo.svg" width="150" height="150" alt="Viettrip AI" />
+              <Image src="/logo.svg" width="150" height="150" alt="Travel Mate AI" />
               <h1 className="bg-black bg-clip-text text-center text-3xl font-bold leading-[1.1em] tracking-[-0.64px] text-transparent md:text-5xl">
-                Viettrip AI
+                Travel Mate AI
               </h1>
             </div>
           </FadeIn>

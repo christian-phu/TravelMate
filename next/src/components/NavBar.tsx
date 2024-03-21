@@ -40,7 +40,7 @@ export default function NavBar() {
                   alt="logo trip"
                   className="mb-1 mr-2 invert-0"
                 />
-                <span className="text-base/7 font-semibold md:text-xl/8">Viettrip Agent</span>
+                <span className="text-base/7 font-semibold md:text-xl/8">Travel Mate AI</span>
               </a>
 
               <div className="hidden flex-1 items-center justify-center xmd:flex">

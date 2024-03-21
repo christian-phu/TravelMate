@@ -12,7 +12,7 @@ const AppTitle = () => {
             textShadow: "0px 5px 5px rgba(0, 0, 0, 0.1)",
           }}
         >
-          Viettrip Agent
+          Travel Mate AI
         </span>
       </div>
       <div className="mt-5 text-center font-mono text-[0.7em] font-bold text-white">
@@ -21,7 +21,7 @@ const AppTitle = () => {
         </div>
         <div className="hidden md:flex">
           <BannerBadge>
-            Turn your next trip into a hassle-free experience with Viettrip Agent.
+            Turn your next trip into a hassle-free experience with Travel Mate AI.
           </BannerBadge>
         </div>
       </div>

@@ -45,7 +45,7 @@ const welcome = () => {
       >
         <motion.div>
           <Image
-            src="/logos/dark-default-solid.svg"
+            src="/logos/logo11.svg"
             width="150"
             height="150"
             alt="Reworkd AI"
@@ -54,15 +54,14 @@ const welcome = () => {
         </motion.div>
         <FadeIn duration={3} delay={0.45} initialY={-40}>
           <h1 className="mb-6 text-5xl font-semibold tracking-widest text-white">
-            Welcome to Viettrip AI
+            Welcome to Travel Mate
           </h1>
         </FadeIn>
-        <FadeIn duration={2.85} delay={0.6} initialY={-40}>
+        {/* <FadeIn duration={2.85} delay={0.6} initialY={-40}>
           <p className="mb-8 max-w-lg text-center font-light text-white">
-            Optimize web scraping with AI Agents that auto-generates, repairs scripts, and ensures
-            uninterrupted data retrieval. Scale your data extraction effortlessly.
+            
           </p>
-        </FadeIn>
+        </FadeIn> */}
         <FadeIn duration={2.7} delay={0.75} initialY={-40}>
           <PrimaryButton className="px-16 font-bold" onClick={handleButtonClick}>
             Get Started

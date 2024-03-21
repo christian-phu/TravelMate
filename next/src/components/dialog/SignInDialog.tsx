@@ -43,7 +43,7 @@ export const SignInDialog = ({ show, setOpen }: SignInDialogProps) => {
         <a className="link" onClick={() => void signIn()}>
           sign in
         </a>{" "}
-        to deploy an Agent! 🤖
+        to deploy an Travel Mate!
       </p>
     </Dialog>
   );

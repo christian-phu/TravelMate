@@ -29,7 +29,7 @@ export default function MyTrip() {
           <Link
             href="/"
             // className="text-accent dark:text-accentDark inline-block text-base font-medium underline  underline-offset-2 md:text-lg"
-            className="flex items-center gap-2 rounded-full bg-cyan-500 px-4 py-2.5 text-black hover:bg-cyan-100 md:text-base"
+            className="flex items-center gap-2 rounded-full bg-slate-300 px-4 py-2.5 text-black hover:bg-slate-100 md:text-base"
           >
             <FaPlusCircle />
             New Trip
