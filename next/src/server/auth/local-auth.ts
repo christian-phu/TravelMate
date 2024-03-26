@@ -29,6 +29,10 @@ export const options = (
   req: NextApiRequest | IncomingMessage,
   res: NextApiResponse | ServerResponse
 ): AuthOptions => {
+
+  if (!adapter) {
+    throw new Error('Adapter is not provided or is undefined.');
+  }
   return {
     adapter,
     providers: [
@@ -40,13 +44,22 @@ export const options = (
         },
         async authorize(credentials, req) {
           if (!credentials) return null;
-
           const creds = z
+
             .object({
               name: z.string().min(1),
               superAdmin: z.preprocess((str) => str === "true", z.boolean()).default(false),
             })
             .parse(credentials);
+          if (typeof adapter.getUserByEmail !== 'function') {
+            throw new Error('The adapter does not implement getUserByEmail.');
+          }
+          if (typeof adapter.createUser !== 'function') {
+            throw new Error('The adapter does not implement createUser.');
+          }
+          if (typeof adapter.updateUser !== 'function') {
+            throw new Error('The adapter does not implement updateUser.');
+          }
 
           const user = await adapter.getUserByEmail(creds.name);
           return user
@@ -72,9 +85,11 @@ export const options = (
       // Fallback to base url if provided url is not a subdirectory
       redirect: (params: { url: string; baseUrl: string }) =>
         params.url.startsWith(params.baseUrl) ? params.url : params.baseUrl,
-
       async signIn({ user }) {
         if (user) {
+          if (!adapter.createSession) {
+            throw new Error('The adapter does not implement createSession.');
+          }
           const session = await adapter.createSession({
             sessionToken: v4(),
             userId: user.id,

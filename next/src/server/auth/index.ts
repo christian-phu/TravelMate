@@ -12,7 +12,12 @@ import { options as devOptions } from "./local-auth";
 import { env } from "../../env/server.mjs";
 import { prisma } from "../db";
 
-function overridePrisma<T>(fn: (user: T) => Awaitable<AdapterUser>) {
+function overridePrisma<T>(fn?: (user: T) => Awaitable<AdapterUser>) {
+  // Throw an error or handle the undefined case here if `fn` is not provided.
+  if (!fn) {
+    throw new Error('The createUser function must be defined.');
+  }
+
   return async (user: T) => {
     const newUser = await fn(user);
 
@@ -27,6 +32,11 @@ function overridePrisma<T>(fn: (user: T) => Awaitable<AdapterUser>) {
 }
 
 const prismaAdapter = PrismaAdapter(prisma);
+if (typeof prismaAdapter.createUser === 'function') {
+  prismaAdapter.createUser = overridePrisma(prismaAdapter.createUser);
+} else {
+  throw new Error('The createUser method is not available on the PrismaAdapter instance.');
+}
 prismaAdapter.createUser = overridePrisma<Omit<AdapterUser, "id">>(prismaAdapter.createUser);
 
 const commonOptions: Partial<AuthOptions> & { adapter: Adapter } = {
