@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "next-i18next";
 import type { KeyboardEvent, RefObject } from "react";
 import { useState } from "react";
-import { FaBackspace, FaCog, FaPlay, FaStar } from "react-icons/fa";
+import { FaBackspace, FaCog, FaPlay } from "react-icons/fa";
 
 import { useAgentStore } from "../../stores";
 import type { Message } from "../../types/message";
@@ -12,7 +12,6 @@ import ExampleAgents from "../console/ExampleAgents";
 import { ToolsDialog } from "../dialog/ToolsDialog";
 import Input from "../Input";
 import { MdAddToPhotos } from "react-icons/md";
-
 import { Formik, Field, ErrorMessage, Form } from "formik";
 import * as Yup from "yup";
 
@@ -29,9 +28,17 @@ type LandingProps = {
 };
 
 const validationSchema = Yup.object().shape({
-  location: Yup.string().required("Location is required"),
-  start_Location: Yup.string().required("Start Location is required"),
-  start_Date: Yup.date().required("Start Date is required"),
+  location: Yup.string()
+    .required("Location is required")
+    .min(5, "Location must be at least 5 characters")
+    .max(100, "Location must be less than 100 characters"),
+  start_Location: Yup.string()
+    .required("Start Location is required")
+    .min(5, "Start Location must be at least 5 characters")
+    .max(100, "Start Location must be less than 100 characters"),
+  start_Date: Yup.date()
+    .required("Start Date is required")
+    .min(new Date(), "Start Date cannot be in the past"),
   end_Date: Yup.date()
     .required("End Date is required")
     .test(
@@ -52,7 +59,24 @@ const validationSchema = Yup.object().shape({
     ),
   number_Of_People: Yup.number()
     .required("Number of People is required")
-    .min(1, "Number of People must be at least 1"),
+    .min(1, "Number of People must be at least 1")
+    .max(999, "Number of People must be less than or equal to 999")
+    .integer("Number of People must be an integer"),
+  budget: Yup.string()
+    .required("Budget is required")
+    .oneOf(["Cheap", "Mid", "High"], "Invalid budget"),
+  travel_Style: Yup.string()
+    .required("Travel Style is required")
+    .oneOf(
+      [
+        "Relaxation",
+        "Cultural of Historical",
+        "Romantic for Couples",
+        "Family-Friendly",
+        "Adventure and Outdoor",
+      ],
+      "Invalid travel style"
+    ),
 });
 
 const Landing = (props: LandingProps) => {
@@ -68,7 +92,7 @@ const Landing = (props: LandingProps) => {
     end_Date: "",
     number_Of_People: "",
     budget: "",
-    age: "",
+    travel_Style: "",
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
@@ -199,26 +223,34 @@ const Landing = (props: LandingProps) => {
                     When does your trip start?
                   </label>
                   <div className="flex space-x-4">
-                    <Field
-                      type="date"
-                      id="start_Date"
-                      name="start_Date"
-                      className="block w-full flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                    />
+                    <div className="flex-1">
+                      <Field
+                        type="date"
+                        id="start_Date"
+                        name="start_Date"
+                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                      />
+                      <ErrorMessage
+                        name="start_Date"
+                        component="div"
+                        className="text-sm text-red-500"
+                      />
+                    </div>
                     <div className="self-center">to</div>
-                    <Field
-                      type="date"
-                      id="end_Date"
-                      name="end_Date"
-                      className="block w-full flex-1 rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                    />
+                    <div className="flex-1">
+                      <Field
+                        type="date"
+                        id="end_Date"
+                        name="end_Date"
+                        className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                      />
+                      <ErrorMessage
+                        name="end_Date"
+                        component="div"
+                        className="text-sm text-red-500"
+                      />
+                    </div>
                   </div>
-                  <ErrorMessage
-                    name="start_Date"
-                    component="div"
-                    className="text-sm text-red-500"
-                  />
-                  <ErrorMessage name="end_Date" component="div" className="text-sm text-red-500" />
                 </div>
                 <div className="mb-5">
                   <label
@@ -253,7 +285,7 @@ const Landing = (props: LandingProps) => {
                     disabled={isSubmitting}
                     className="my-5 border-0 bg-gradient-to-t from-[#02FCF1] to-[#A02BFE] subpixel-antialiased saturate-[75%] hover:saturate-100"
                   >
-                    <MdAddToPhotos />
+                    <FaPlay />
                   </Button>
                 </div>
               </Form>
