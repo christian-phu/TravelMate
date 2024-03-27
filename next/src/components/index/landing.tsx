@@ -77,6 +77,9 @@ const validationSchema = Yup.object().shape({
       ],
       "Invalid travel style"
     ),
+  age: Yup.string()
+    .required("Age is required")
+    .oneOf(["40+ years", "30-40 years", "20-30 years"], "Invalid age"),
 });
 
 const Landing = (props: LandingProps) => {
@@ -91,13 +94,15 @@ const Landing = (props: LandingProps) => {
     start_Date: "",
     end_Date: "",
     number_Of_People: "",
+    age: "",
     budget: "",
     travel_Style: "",
   };
 
   const handleSubmit = (values, { setSubmitting }) => {
-    props.setAgentRun(values.location, JSON.stringify(values));
-    console.log("values", values);
+    const output = `Plan a detailed trip based on the information below: location: ${values.location}, starting location: ${values.start_Location}, start date: ${values.start_Date}, end date: ${values.end_Date}, number of people: ${values.number_Of_People}, age: ${values.age}, budget level: ${values.budget}, travel style: ${values.travel_Style}`;
+    props.setAgentRun(values.location, JSON.stringify(output));
+    console.log(output);
     setSubmitting(false);
   };
 
@@ -151,6 +156,25 @@ const Landing = (props: LandingProps) => {
                   />
                   <ErrorMessage name="location" component="div" className="text-sm text-red-500" />
                 </div>
+                <div className="mb-5">
+                  <label
+                    htmlFor="start_Location"
+                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                  >
+                    Where you start?
+                  </label>
+                  <Field
+                    type="text"
+                    id="start_Location"
+                    name="start_Location"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                  />
+                  <ErrorMessage
+                    name="start_Location"
+                    component="div"
+                    className="text-sm text-red-500"
+                  />
+                </div>
                 <div className="mb-5 flex space-x-4">
                   <div className="flex-1">
                     <label
@@ -199,24 +223,47 @@ const Landing = (props: LandingProps) => {
                     <ErrorMessage name="budget" component="div" className="text-sm text-red-500" />
                   </div>
                 </div>
-                <div className="mb-5">
-                  <label
-                    htmlFor="start_Location"
-                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    Where you start?
-                  </label>
-                  <Field
-                    type="text"
-                    id="start_Location"
-                    name="start_Location"
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                  />
-                  <ErrorMessage
-                    name="start_Location"
-                    component="div"
-                    className="text-sm text-red-500"
-                  />
+                <div className="mb-5 flex space-x-4">
+                  <div className="flex-1">
+                    <label
+                      htmlFor="number_Of_People"
+                      className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Number of people:
+                    </label>
+                    <Field
+                      type="number"
+                      min={1}
+                      id="number_Of_People"
+                      name="number_Of_People"
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    />
+                    <ErrorMessage
+                      name="number_Of_People"
+                      component="div"
+                      className="text-sm text-red-500"
+                    />
+                  </div>
+                  <div className="flex-1">
+                    <label
+                      htmlFor="age"
+                      className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+                    >
+                      Average traveler age:
+                    </label>
+                    <Field
+                      as="select"
+                      id="age"
+                      name="age"
+                      className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    >
+                      <option value="">Select age...</option>
+                      <option value="40+ years">40+ years</option>
+                      <option value="30-40 years">30-40 years</option>
+                      <option value="20-30 years">20-30 years</option>
+                    </Field>
+                    <ErrorMessage name="age" component="div" className="text-sm text-red-500" />
+                  </div>
                 </div>
                 <div className="mb-5">
                   <label className="mb-2 block text-sm font-medium text-gray-900 dark:text-white">
@@ -251,26 +298,6 @@ const Landing = (props: LandingProps) => {
                       />
                     </div>
                   </div>
-                </div>
-                <div className="mb-5">
-                  <label
-                    htmlFor="number_Of_People"
-                    className="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-                  >
-                    How many people are going?
-                  </label>
-                  <Field
-                    type="number"
-                    min={1}
-                    id="number_Of_People"
-                    name="number_Of_People"
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
-                  />
-                  <ErrorMessage
-                    name="number_Of_People"
-                    component="div"
-                    className="text-sm text-red-500"
-                  />
                 </div>
                 <div className="flex w-full flex-row items-center justify-center gap-3">
                   <Button
