@@ -3,7 +3,7 @@ import { type NextPage } from "next";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FaBackspace, FaShare, FaTrash } from "react-icons/fa";
 
 import nextI18NextConfig from "../../../next-i18next.config";
@@ -18,13 +18,11 @@ import type { Message } from "../../types/message";
 import { api } from "../../utils/api";
 import { languages } from "../../utils/languages";
 import Map from "../../components/map";
-import clsx from "clsx";
 
-const AgentPage: NextPage = () => {
+const TripPage: NextPage = () => {
   const [t] = useTranslation();
   const [showCopied, setShowCopied] = useState(false);
   const router = useRouter();
-
   const agentId = typeof router.query.id === "string" ? router.query.id : "";
 
   const getAgent = api.agent.findById.useQuery(agentId, {
@@ -38,19 +36,32 @@ const AgentPage: NextPage = () => {
   });
 
   const messages = getAgent.data ? (getAgent.data.tasks as Message[]) : [];
-  console.log("messages", getAgent.data);
+  let addressData1 = [];
+  const lastMessage = messages[messages.length - 1];
+  if (lastMessage !== undefined) {
+    const match = lastMessage.info.match(/Các địa điểm du lịch ở Phú Quốc:\s*\[(.*?)\]/s);
+    if (match) { 
+      // console.log("Danh sách địa điểm du lịch:", match[1]);
+      addressData1 = match[1].split(',').map((address, index) => ({ id: index, address: address.trim() }));
+      console.log("Danh sách địa điểm du lịch:", addressData1);
+    } else {
+      console.log("Không tìm thấy danh sách địa điểm du lịch.");
+    }
+  } else {
+    console.log("Last Message is undefined.");
+  }
 
   const shareLink = () => {
     return encodeURI(`${env.NEXT_PUBLIC_VERCEL_URL}${router.asPath}`);
   };
 
-  const addressData = [
-    { id: 0, address: "Thảo Cầm Viên" },
-    { id: 1, address: "Dam Sen Water Park"},
-    { id: 2, address: "Bến Nhà Rồng" },
-    { id: 3, address: "Chợ Bến Thành" },
-    { id: 4, address: "Nhà Thờ Đức Bà" },
-  ];
+  // const addressData = [
+  //   { id: 0, address: "Thảo Cầm Viên" },
+  //   { id: 1, address: "Dam Sen Water Park"},
+  //   { id: 2, address: "Bến Nhà Rồng" },
+  //   { id: 3, address: "Chợ Bến Thành" },
+  //   { id: 4, address: "Nhà Thờ Đức Bà" },
+  // ];
 
   return (
     <DashboardLayout>
@@ -100,14 +111,14 @@ const AgentPage: NextPage = () => {
           />
         </div>
         <div className="" style={{ maxHeight: "calc(100vh)", overflowX: "scroll" }}>
-          <Map addressData={addressData} />
+          <Map addressData={addressData1} />
         </div>
       </section>
     </DashboardLayout>
   );
 };
 
-export default AgentPage;
+export default TripPage;
 
 export const getStaticProps: GetStaticProps = async ({ locale = "en" }) => {
   const supportedLocales = languages.map((language) => language.code);

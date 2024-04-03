@@ -5,6 +5,7 @@ import axios from "axios";
 import { map } from "lodash";
 
 function App({ addressData }) {
+
   // function getMapData(addressData: any) {
   //   let mapData: any = [];
   //   addressData.map((address: any) => {
@@ -47,9 +48,18 @@ function App({ addressData }) {
     setMarkerData(mapData);
   };
 
+
+  if (!addressData || addressData.length === 0) {
+    console.log('addressData không có giá trị', addressData);
+  } else {
+    console.log('addressData có giá trị', addressData);
+  }
+
   useEffect(() => {
-    fetchData(addressData);
-  }, []);
+    if (addressData && addressData.length > 0) {
+      fetchData(addressData);
+    }
+  }, [addressData]);
 
   return (
     <Map
