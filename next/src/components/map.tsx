@@ -5,27 +5,6 @@ import axios from "axios";
 import { map } from "lodash";
 
 function App({ addressData }) {
-  // function getMapData(addressData: any) {
-  //   let mapData: any = [];
-  //   addressData.map((address: any) => {
-  //     axios
-  //       .get(
-  //         `https://api.mapbox.com/geocoding/v5/mapbox.places/${address.address}.json?access_token=${process.env.NEXT_PUBLIC_MAPBOX_API_TOKEN}`
-  //       )
-  //       .then((response) => {
-  //         console.log("response", response);
-  //         mapData.push({
-  //           ...address,
-  //           longitude: response.data.features[0].center[0],
-  //           latitude: response.data.features[0].center[1],
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //       });
-  //   });
-  //   console.log("mapData", mapData);
-  // }
   const [markerData, setMarkerData] = useState([]);
   const fetchData = async (addressData: any) => {
     let mapData: any = [];
@@ -47,9 +26,18 @@ function App({ addressData }) {
     setMarkerData(mapData);
   };
 
+
+  if (!addressData || addressData.length === 0) {
+    console.log('addressData không có giá trị', addressData);
+  } else {
+    console.log('addressData có giá trị', addressData);
+  }
+
   useEffect(() => {
-    fetchData(addressData);
-  }, []);
+    if (addressData && addressData.length > 0) {
+      fetchData(addressData);
+    }
+  }, [addressData]);
 
   return (
     <Map
@@ -58,7 +46,7 @@ function App({ addressData }) {
       initialViewState={{
         longitude: 105.6810675,
         latitude: 21.0226686,
-        zoom: 8.5,
+        zoom: 5,
       }}
       mapStyle="mapbox://styles/mapbox/streets-v9"
     >

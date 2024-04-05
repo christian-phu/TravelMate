@@ -87,9 +87,9 @@ summarize_prompt = PromptTemplate(
 
 
     At the end of the summary, find all names of the travel destinations referenced in the paragraph above and return them in the following format:
-    [Location mentioned][location 1, location 2, ...]
+    #####[location 1, location 2, ...]#####
     Examples:
-    [Location mentioned][Ha Noi, Ho Chi Minh, Da Lat, ...]
+    #####[Ha Noi, Ho Chi Minh, Da Lat, ...]#####
     """,
     input_variables=["goal", "language", "text"],
 )
