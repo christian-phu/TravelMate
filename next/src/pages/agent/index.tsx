@@ -37,13 +37,16 @@ const TripPage: NextPage = () => {
 
   const messages = getAgent.data ? (getAgent.data.tasks as Message[]) : [];
   // let addressData1 = [];
-  let addressData1: { id: number; address: string; }[] = [];
+  let addressData1: { id: number; address: string }[] = [];
   const lastMessage = messages[messages.length - 1];
   if (lastMessage && lastMessage.info) {
-    const match = lastMessage.info.match(/Các địa điểm du lịch ở Phú Quốc:\s*\[(.*?)\]/s);
-    if (match && match[1]) { 
+    // const match = lastMessage.info.match(/Các địa điểm du lịch ở Phú Quốc:\s*\[(.*?)\]/s);
+    const match = lastMessage.info.match(/#####\[(.*?)\]#####/s);
+    if (match && match[1]) {
       // console.log("Danh sách địa điểm du lịch:", match[1]);
-      addressData1 = match[1].split(',').map((address, index) => ({ id: index, address: address.trim() }));
+      addressData1 = match[1]
+        .split(",")
+        .map((address, index) => ({ id: index, address: address.trim() }));
       console.log("Danh sách địa điểm du lịch:", addressData1);
     } else {
       console.log("Không tìm thấy danh sách địa điểm du lịch.");
@@ -79,7 +82,7 @@ const TripPage: NextPage = () => {
               })}
             </ChatWindow>
           </div>
-          <div className="flex flex-row items-center gap-2 mb-16">
+          <div className="mb-16 flex flex-row items-center gap-2">
             <Button icon={<FaBackspace />} onClick={() => void router.push("/")}>
               Back
             </Button>
