@@ -8,7 +8,7 @@ import type { ClientSafeProvider } from "next-auth/react";
 import { getProviders, signIn, useSession } from "next-auth/react";
 import type { LiteralUnion } from "next-auth/react/types";
 import React, { useState } from "react";
-import { FaDiscord, FaGithub, FaGoogle } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import FadeIn from "../components/motions/FadeIn";
 import { authOptions } from "../server/auth/auth";
 import Input from "../ui/input";
@@ -98,11 +98,6 @@ const providerButtonDetails: { [key: string]: ButtonDetail } = {
     id: "google",
     icon: <FaGoogle className="mr-2" />,
     color: "bg-white hover:bg-gray-200 text-black",
-  },
-  discord: {
-    id: "discord",
-    icon: <FaDiscord className="mr-2" />,
-    color: "bg-blue-600 hover:bg-blue-700 text-white",
   },
   github: {
     id: "github",

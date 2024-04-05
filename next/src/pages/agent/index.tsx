@@ -36,11 +36,12 @@ const TripPage: NextPage = () => {
   });
 
   const messages = getAgent.data ? (getAgent.data.tasks as Message[]) : [];
-  let addressData1 = [];
+  // let addressData1 = [];
+  let addressData1: { id: number; address: string; }[] = [];
   const lastMessage = messages[messages.length - 1];
-  if (lastMessage !== undefined) {
+  if (lastMessage && lastMessage.info) {
     const match = lastMessage.info.match(/Các địa điểm du lịch ở Phú Quốc:\s*\[(.*?)\]/s);
-    if (match) { 
+    if (match && match[1]) { 
       // console.log("Danh sách địa điểm du lịch:", match[1]);
       addressData1 = match[1].split(',').map((address, index) => ({ id: index, address: address.trim() }));
       console.log("Danh sách địa điểm du lịch:", addressData1);
