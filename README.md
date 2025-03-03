@@ -2,8 +2,6 @@
 
 TravelMate is an advanced travel planning platform built on an AI agent architecture that helps users plan trips, find accommodations, discover attractions, and manage their travel itineraries.
 
-![TravelMate Banner](https://via.placeholder.com/800x200?text=TravelMate+AI+Travel+Assistant)
-
 ## 🤖 AI Agent Architecture
 
 The core of TravelMate is its AI agent system that uses:
